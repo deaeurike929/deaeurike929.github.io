@@ -1,0 +1,1957 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Deandra Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <script>
+    /* Animasi aktif hanya jika browser mendukung dan pengguna tidak memilih "reduce motion" */
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) document.documentElement.classList.add("js");
+  </script>
+  <style>
+    :root {
+      --bg: #fff;
+      --bg-alt: #f5f5f7;
+      --fg: #1d1d1f;
+      --fg-2: #6e6e73;
+      --line: #d2d2d7;
+      --accent: #0071e3;
+      --accent-fg: #fff;
+      --link: #0066cc;
+      --nav-bg: rgba(255, 255, 255, .72);
+      --ph: #e8e8ed;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+      --wrap: 1080px;
+      --reel: clamp(280px, 26vw, 400px);
+      --ease: cubic-bezier(.2, .7, .2, 1);
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #000;
+        --bg-alt: #161617;
+        --fg: #f5f5f7;
+        --fg-2: #a1a1a6;
+        --line: #38383a;
+        --link: #2997ff;
+        --nav-bg: rgba(0, 0, 0, .72);
+        --ph: #1d1d1f;
+        color-scheme: dark
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #000;
+      --bg-alt: #161617;
+      --fg: #f5f5f7;
+      --fg-2: #a1a1a6;
+      --line: #38383a;
+      --link: #2997ff;
+      --nav-bg: rgba(0, 0, 0, .72);
+      --ph: #1d1d1f;
+      color-scheme: dark
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: env(safe-area-inset-top, 0px);
+      -webkit-text-size-adjust: 100%
+    }
+
+    @media (min-width:1100px) {
+      html {
+        font-size: 100%;
+        --wrap: 1160px
+      }
+    }
+
+    @media (min-width:1440px) {
+      html {
+        font-size: 112.5%;
+        --wrap: 1280px
+      }
+    }
+
+    @media (min-width:1920px) {
+      html {
+        font-size: 125%;
+        --wrap: 1440px
+      }
+    }
+
+    @media (min-width:2560px) {
+      html {
+        font-size: 150%;
+        --wrap: 1680px
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    ul,
+    dl,
+    dd {
+      margin: 0
+    }
+
+    ul {
+      padding: 0;
+      list-style: none
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px
+    }
+
+    img,
+    video {
+      max-width: 100%
+    }
+
+    .wrap {
+      max-width: var(--wrap);
+      margin-inline: auto;
+      padding-inline: max(clamp(16px, 5vw, 48px), env(safe-area-inset-left, 0px)) max(clamp(16px, 5vw, 48px), env(safe-area-inset-right, 0px))
+    }
+
+    .sec {
+      padding-block: clamp(72px, 11vw, 140px);
+      scroll-margin-top: 48px
+    }
+
+    .sec.alt {
+      background: var(--bg-alt)
+    }
+
+    .eyebrow {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--fg-2)
+    }
+
+    .h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -.03em;
+      line-height: 1.08;
+      text-wrap: balance
+    }
+
+    .lede {
+      color: var(--fg-2);
+      font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+      line-height: 1.4;
+      margin-top: 14px;
+      max-width: 36rem
+    }
+
+    .head {
+      margin-bottom: clamp(40px, 6vw, 72px)
+    }
+
+    .todo {
+      color: var(--fg-2);
+      border-bottom: 1px dashed var(--fg-2)
+    }
+
+    /* ===== Animasi ===== */
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      z-index: 30;
+      pointer-events: none
+    }
+
+    /* Scroll reveal: elemen muncul pelan dari bawah */
+    .js .rv {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease);
+      transition-delay: var(--d, 0s)
+    }
+
+    .js .rv.in {
+      opacity: 1;
+      transform: none
+    }
+
+    /* Judul hero: kata muncul satu per satu */
+    .w {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+      padding-bottom: .1em;
+      margin-bottom: -.1em
+    }
+
+    .wi {
+      display: inline-block;
+      transform: translateY(110%);
+      transition: transform 1s var(--ease);
+      transition-delay: calc(var(--i) * 90ms)
+    }
+
+    .hero.go .wi {
+      transform: none
+    }
+
+    .hero .sub {
+      --d: .45s
+    }
+
+    .hero .cta {
+      --d: .6s
+    }
+
+    .hero .proof {
+      --d: .75s
+    }
+
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 10;
+      background: var(--nav-bg);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--line);
+      transition: box-shadow .3s
+    }
+
+    .nav.sc {
+      box-shadow: 0 6px 24px rgba(0, 0, 0, .08)
+    }
+
+    .nav .wrap {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px
+    }
+
+    .brand {
+      color: var(--fg);
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: -.01em
+    }
+
+    .brand:hover {
+      text-decoration: none
+    }
+
+    .nav ul {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 3vw, 32px)
+    }
+
+    .nav li a {
+      color: var(--fg-2);
+      font-size: .8125rem;
+      transition: color .2s
+    }
+
+    .nav li a:hover,
+    .nav li a.on {
+      color: var(--fg);
+      text-decoration: none
+    }
+
+    .pill-sm {
+      background: var(--fg);
+      color: var(--bg) !important;
+      padding: 5px 12px;
+      border-radius: 980px;
+      font-weight: 500
+    }
+
+    @media (max-width:640px) {
+      .n-lg {
+        display: none
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding-block: clamp(64px, 11vw, 140px) clamp(56px, 8vw, 100px)
+    }
+
+    .hero h1 {
+      font-size: clamp(2.75rem, 9vw, 6rem);
+      font-weight: 700;
+      letter-spacing: -.04em;
+      line-height: 1.02;
+      text-wrap: balance;
+      max-width: 12ch;
+      margin-inline: auto
+    }
+
+    .hero .sub {
+      font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+      line-height: 1.35;
+      color: var(--fg-2);
+      max-width: 30em;
+      margin: 24px auto 0;
+      text-wrap: balance
+    }
+
+    .cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px 28px;
+      margin-top: 36px
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--accent-fg);
+      font-size: 1.0625rem;
+      padding: 12px 26px;
+      border-radius: 980px;
+      transition: background .2s, transform .3s var(--ease), box-shadow .3s
+    }
+
+    .btn:hover {
+      background: #0077ed;
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 113, 227, .35)
+    }
+
+    .link-arrow::after {
+      content: " \203A";
+      display: inline-block;
+      transition: transform .3s var(--ease)
+    }
+
+    .link-arrow:hover::after {
+      transform: translateX(5px)
+    }
+
+    .proof {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      margin-top: clamp(40px, 6vw, 64px);
+      font-size: .875rem;
+      color: var(--fg-2)
+    }
+
+    .proof span+span::before {
+      content: "\00B7";
+      margin-right: 14px
+    }
+
+    .proof b {
+      color: var(--fg);
+      font-weight: 600
+    }
+
+    /* Work */
+    .case {
+      display: grid;
+      grid-template-columns: minmax(0, var(--reel)) minmax(0, 1fr);
+      gap: clamp(32px, 6vw, 96px);
+      align-items: start
+    }
+
+    .case+.case {
+      margin-top: clamp(72px, 10vw, 140px)
+    }
+
+    .reel-col {
+      min-width: 0
+    }
+
+    .reel {
+      position: relative;
+      width: 100%;
+      max-width: var(--reel);
+      aspect-ratio: 9/16;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--ph);
+      border: 1px solid var(--line);
+      transition: transform .6s var(--ease), box-shadow .6s var(--ease)
+    }
+
+    .reel:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, .2)
+    }
+
+    .reel video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    /* Kontrol reel: seek, waktu, play/pause, suara */
+    .rc {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2px 8px;
+      padding: 8px 10px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, .45);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity .35s var(--ease), transform .35s var(--ease)
+    }
+
+    .rc.show {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto
+    }
+
+    .rc-seek {
+      order: -1;
+      flex: 1 1 100%;
+      min-width: 0;
+      height: 18px;
+      margin: 0;
+      accent-color: #fff;
+      cursor: pointer
+    }
+
+    .rc button {
+      flex: none;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      cursor: pointer
+    }
+
+    .rc button:hover {
+      background: rgba(255, 255, 255, .2)
+    }
+
+    .rc button svg {
+      width: 16px;
+      height: 16px
+    }
+
+    .rc-time {
+      flex: 1;
+      font-size: .75rem;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap
+    }
+
+    .ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 24px;
+      text-align: center;
+      color: var(--fg-2)
+    }
+
+    .ph span {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase
+    }
+
+    .ph small {
+      font-size: .8125rem;
+      line-height: 1.35;
+      max-width: 18em
+    }
+
+    .reel-note {
+      margin-top: 12px;
+      font-size: .8125rem;
+      color: var(--fg-2);
+      max-width: var(--reel)
+    }
+
+    .case-body {
+      min-width: 0
+    }
+
+    .case h3 {
+      font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -.03em;
+      line-height: 1.1
+    }
+
+    .kicker {
+      color: var(--fg-2);
+      margin-top: 6px
+    }
+
+    .rows {
+      margin-top: 28px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: clamp(110px, 12vw, 160px) minmax(0, 1fr);
+      gap: 6px 24px;
+      padding-block: 16px;
+      border-top: 1px solid var(--line);
+      transition: padding-left .4s var(--ease)
+    }
+
+    .row:hover {
+      padding-left: 10px
+    }
+
+    .row dt {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--fg-2);
+      padding-top: 4px
+    }
+
+    .row dd {
+      min-width: 0
+    }
+
+    .row.result dd {
+      font-weight: 600
+    }
+
+    @media (min-width:820px) {
+      .case.flip .reel-col {
+        order: 2
+      }
+    }
+
+    @media (max-width:819px) {
+      .case {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .reel,
+      .reel-note {
+        max-width: min(340px, 100%)
+      }
+    }
+
+    @media (max-width:560px) {
+      .row {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .row dt {
+        padding-top: 0
+      }
+    }
+
+    /* ===== Featured Works (thumbnail kecil, video baru dimuat saat diklik) ===== */
+    .sec.join {
+      padding-top: 0
+    }
+
+    .fw {
+      border-top: 1px solid var(--line);
+      padding-top: clamp(56px, 8vw, 96px)
+    }
+
+    /* 3 kolom x 2 baris di semua ukuran layar */
+    /* 3 video di baris pertama, 2 di baris kedua, keduanya rata tengah */
+    .fw-grid {
+      --g: clamp(10px, 2vw, 24px);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--g);
+      max-width: 800px;
+      margin-inline: auto
+    }
+
+    .fw-grid li {
+      flex: 0 0 calc((100% - 2 * var(--g)) / 3)
+    }
+
+    .fw-item {
+      position: relative;
+      display: block;
+      aspect-ratio: 9/16;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--ph);
+      border: 1px solid var(--line);
+      color: #fff;
+      transition: transform .5s var(--ease), box-shadow .5s var(--ease)
+    }
+
+    .fw-item:hover {
+      text-decoration: none;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(0, 0, 0, .2)
+    }
+
+    .fw-item img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s var(--ease)
+    }
+
+    .fw-item:hover img {
+      transform: scale(1.06)
+    }
+
+    .fw-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .6), transparent 45%);
+      pointer-events: none
+    }
+
+    .fw-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 56px;
+      height: 56px;
+      margin: -28px 0 0 -28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(0, 0, 0, .35);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      z-index: 1;
+      transition: transform .4s var(--ease), background .3s
+    }
+
+    .fw-play svg {
+      width: 20px;
+      height: 20px;
+      margin-left: 3px
+    }
+
+    .fw-item:hover .fw-play {
+      transform: scale(1.12);
+      background: rgba(0, 0, 0, .55)
+    }
+
+    .fw-cap {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 14px;
+      z-index: 1;
+      font-size: .875rem;
+      font-weight: 600;
+      line-height: 1.3;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, .4)
+    }
+
+    @media (max-width:480px) {
+      .fw-item {
+        border-radius: 12px
+      }
+
+      .fw-play {
+        width: 36px;
+        height: 36px;
+        margin: -18px 0 0 -18px
+      }
+
+      .fw-cap {
+        font-size: .6875rem;
+        left: 8px;
+        right: 8px;
+        bottom: 8px
+      }
+    }
+
+    /* Lightbox (popup video 9:16) */
+    html.lb-open {
+      overflow: hidden
+    }
+
+    .lb {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      overflow: hidden
+    }
+
+    .lb[open] {
+      display: grid;
+      place-items: center
+    }
+
+    .lb::backdrop {
+      background: rgba(0, 0, 0, .85);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px)
+    }
+
+    .lb[open]::backdrop {
+      animation: lbFade .35s ease
+    }
+
+    .lb[open] .lb-frame {
+      animation: lbIn .45s var(--ease)
+    }
+
+    @keyframes lbFade {
+      from {
+        opacity: 0
+      }
+    }
+
+    @keyframes lbIn {
+      from {
+        opacity: 0;
+        transform: scale(.94)
+      }
+    }
+
+    .lb-frame {
+      position: relative;
+      width: min(100vw, calc(92vh * 9 / 16));
+      width: min(100vw, calc(92dvh * 9 / 16));
+      aspect-ratio: 9/16;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 40px 120px rgba(0, 0, 0, .6)
+    }
+
+    .lb-frame video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #000
+    }
+
+    .lb-frame.loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 36px;
+      height: 36px;
+      margin: -18px 0 0 -18px;
+      border: 3px solid rgba(255, 255, 255, .25);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: lbSpin .8s linear infinite;
+      pointer-events: none
+    }
+
+    @keyframes lbSpin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .lb-btn {
+      position: fixed;
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, .14);
+      color: #fff;
+      cursor: pointer;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      transition: background .25s, transform .3s var(--ease)
+    }
+
+    .lb-btn:hover {
+      background: rgba(255, 255, 255, .28)
+    }
+
+    .lb-btn svg {
+      width: 20px;
+      height: 20px
+    }
+
+    .lb-close {
+      top: max(16px, env(safe-area-inset-top, 0px));
+      right: max(16px, env(safe-area-inset-right, 0px))
+    }
+
+    .lb-prev,
+    .lb-next {
+      top: 50%;
+      margin-top: -22px
+    }
+
+    .lb-prev {
+      left: clamp(12px, 3vw, 40px)
+    }
+
+    .lb-next {
+      right: clamp(12px, 3vw, 40px)
+    }
+
+    .lb-count {
+      position: fixed;
+      top: max(28px, calc(env(safe-area-inset-top, 0px) + 12px));
+      left: max(20px, env(safe-area-inset-left, 0px));
+      z-index: 2;
+      font-size: .8125rem;
+      color: rgba(255, 255, 255, .7);
+      font-variant-numeric: tabular-nums
+    }
+
+    @media (max-width:600px) {
+      .lb-frame {
+        width: min(100vw, calc(100vh * 9 / 16));
+        width: min(100vw, calc(100dvh * 9 / 16));
+        border-radius: 0;
+        box-shadow: none
+      }
+
+      .lb-prev,
+      .lb-next {
+        display: none
+      }
+    }
+
+    /* Results */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px 32px
+    }
+
+    .stat {
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      min-width: 0
+    }
+
+    .stat .n {
+      font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
+      overflow-wrap: anywhere
+    }
+
+    .stat .l {
+      margin-top: 12px;
+      color: var(--fg-2);
+      font-size: .9375rem;
+      line-height: 1.4
+    }
+
+    @media (min-width:1000px) {
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+      }
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: clamp(32px, 6vw, 80px);
+      align-items: center
+    }
+
+    .about {
+      max-width: 46rem
+    }
+
+    .about .big {
+      font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+      font-weight: 600;
+      letter-spacing: -.025em;
+      line-height: 1.25;
+      text-wrap: balance
+    }
+
+    .about p+p {
+      margin-top: 20px;
+      color: var(--fg-2);
+      font-size: 1.1875rem;
+      line-height: 1.5
+    }
+
+    .about-photo {
+      margin: 0;
+      width: 100%;
+      max-width: 420px;
+      justify-self: end;
+      aspect-ratio: 4/5;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--ph);
+      border: 1px solid var(--line);
+      --d: .15s
+    }
+
+    .about-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    @media (max-width:760px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .about-photo {
+        order: -1;
+        max-width: 340px;
+        justify-self: start
+      }
+    }
+
+    /* What I do */
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 40px 32px
+    }
+
+    .col {
+      min-width: 0
+    }
+
+    .col h3 {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding-bottom: 14px
+    }
+
+    .col li {
+      padding-block: 11px;
+      border-top: 1px solid var(--line);
+      transition: padding-left .35s var(--ease), color .3s
+    }
+
+    .col li:hover {
+      padding-left: 8px;
+      color: var(--accent)
+    }
+
+    @media (min-width:1000px) {
+      .cols {
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+      }
+    }
+
+    /* Experience */
+    .exp {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+      gap: 8px 40px;
+      padding-block: 28px;
+      border-top: 1px solid var(--line)
+    }
+
+    .exp:last-child {
+      border-bottom: 1px solid var(--line)
+    }
+
+    .exp h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1.2
+    }
+
+    .exp .role {
+      margin-top: 4px
+    }
+
+    .exp .when {
+      color: var(--fg-2);
+      font-size: .875rem;
+      margin-top: 2px
+    }
+
+    .exp p {
+      min-width: 0
+    }
+
+    .exp.minor h3 {
+      font-size: 1.125rem;
+      font-weight: 500
+    }
+
+    .exp.minor p,
+    .exp.minor .role {
+      color: var(--fg-2)
+    }
+
+    @media (max-width:700px) {
+      .exp {
+        grid-template-columns: minmax(0, 1fr)
+      }
+    }
+
+    /* Tools + logo aplikasi */
+    .two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 56px 48px
+    }
+
+    @media (max-width:760px) {
+      .two {
+        grid-template-columns: minmax(0, 1fr)
+      }
+    }
+
+    .two h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -.025em;
+      margin-bottom: 20px
+    }
+
+    .kv>div {
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr);
+      gap: 6px 20px;
+      padding-block: 14px;
+      border-top: 1px solid var(--line)
+    }
+
+    .kv>div:last-child {
+      border-bottom: 1px solid var(--line)
+    }
+
+    .kv dt {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--fg-2);
+      padding-top: 4px
+    }
+
+    .kv dd {
+      min-width: 0
+    }
+
+    .logos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+      gap: 28px 16px
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      font-size: .8125rem;
+      color: var(--fg-2)
+    }
+
+    .logo i {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font: 700 1.375rem/1 var(--font);
+      letter-spacing: -.04em;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .14);
+      transition: transform .45s var(--ease), box-shadow .45s var(--ease)
+    }
+
+    .logo:hover i {
+      transform: translateY(-8px) rotate(-4deg) scale(1.06);
+      box-shadow: 0 18px 32px rgba(0, 0, 0, .25)
+    }
+
+    .logo:hover {
+      color: var(--fg)
+    }
+
+    /* Contact (selalu gelap, seperti referensi) */
+    .contact {
+      --fg: #f5f5f7;
+      --bg: #000;
+      --fg-2: #a1a1a6;
+      background: #000;
+      color: var(--fg);
+      text-align: center
+    }
+
+    .contact .big {
+      font-size: clamp(3rem, 9.5vw, 7.5rem);
+      font-weight: 700;
+      letter-spacing: -.045em;
+      line-height: 1;
+      max-width: 9ch;
+      margin: 22px auto 0;
+      text-wrap: balance
+    }
+
+    .mail {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: clamp(36px, 5vw, 56px);
+      padding: 18px 30px;
+      border: 0;
+      border-radius: 980px;
+      background: var(--fg);
+      color: var(--bg);
+      font: 500 clamp(1.0625rem, 2vw, 1.5rem)/1 var(--font);
+      letter-spacing: -.01em;
+      cursor: pointer;
+      transition: transform .35s var(--ease), box-shadow .35s
+    }
+
+    .mail:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 40px rgba(255, 255, 255, .18)
+    }
+
+    .mail svg {
+      width: 1.1em;
+      height: 1.1em;
+      flex: none;
+      opacity: .55
+    }
+
+    .social {
+      display: flex;
+      justify-content: center;
+      gap: clamp(28px, 5vw, 44px);
+      margin-top: clamp(40px, 6vw, 64px)
+    }
+
+    .social a {
+      color: var(--fg-2);
+      display: block;
+      transition: color .3s, transform .35s var(--ease)
+    }
+
+    .social a:hover {
+      color: #fff;
+      transform: translateY(-4px) scale(1.12)
+    }
+
+    .social svg {
+      width: 30px;
+      height: 30px;
+      display: block
+    }
+
+    .foot {
+      padding-block: 28px;
+      background: #000;
+      border-top: 1px solid #38383a;
+      color: #a1a1a6;
+      font-size: .75rem
+    }
+
+    @media (hover:none) {
+
+      .btn:hover,
+      .mail:hover,
+      .fw-item:hover {
+        transform: none;
+        box-shadow: none
+      }
+
+      a:hover {
+        text-decoration: none
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      * {
+        transition: none !important
+      }
+
+      .lb[open]::backdrop,
+      .lb[open] .lb-frame {
+        animation: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top">Dea Eurike</a>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li class="n-lg"><a href="#featured">Featured</a></li>
+        <li class="n-lg"><a href="#results">Results</a></li>
+        <li class="n-lg"><a href="#about">About</a></li>
+        <li class="n-lg"><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="n-lg"><a class="pill-sm" href="#contact">Download CV</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="wrap">
+        <h1>Video Editor & Content Producer</h1>
+        <p class="sub">Short-form content, from concept to final cut. Strategy, storytelling, production, and editing in
+          one workflow.</p>
+        <div class="cta">
+          <a class="btn" href="#work">View My Work</a>
+          <a class="link-arrow" href="#contact">Let's Work Together</a>
+        </div>
+        <p class="proof">
+          <span><b>111K+</b> views</span>
+          <span><b>1M+</b> BDGFOLK audience</span>
+          <span><b>Ongoing</b> BAD LAB engagement</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="sec alt" id="work">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2">Selected Work</h2>
+          <p class="lede">Two case studies. Each one shows what I owned.</p>
+        </div>
+
+        <article class="case">
+          <div class="reel-col">
+            <div class="reel">
+              <video src="videos/BDGFOLK.mp4#t=0.1" aria-label="BDGFOLK video that passed 111K views" muted loop
+                playsinline preload="metadata"></video>
+            </div>
+            <p class="reel-note">Instagram Reels, Agustus 2026</p>
+          </div>
+          <div class="case-body">
+            <h3>BDGFOLK</h3>
+            <p class="kicker">Food and lifestyle media</p>
+            <dl class="rows">
+              <div class="row">
+                <dt>Client</dt>
+                <dd>BDGFOLK, a food and lifestyle media platform with 1M+ Instagram followers</dd>
+              </div>
+              <div class="row">
+                <dt>Project type</dt>
+                <dd>Short-form venue and food content for Instagram Reels and TikTok</dd>
+              </div>
+              <div class="row">
+                <dt>My role</dt>
+                <dd>Videographer, video editor, copywriter. I own each video from research to delivery.</dd>
+              </div>
+              <div class="row">
+                <dt>Objective</dt>
+                <dd>Turn each venue into a short story that holds attention on a high-reach feed.</dd>
+              </div>
+              <div class="row">
+                <dt>Creative approach</dt>
+                <dd>Hook-first structure, pacing built for retention, visual style adapted to each venue's personality.
+                </dd>
+              </div>
+              <div class="row">
+                <dt>Execution</dt>
+                <dd>Venue research → on-location filming → voice-over script → caption copy → edit → delivery.</dd>
+              </div>
+              <div class="row result">
+                <dt>Result</dt>
+                <dd>One video passed 111,000 views. Multiple productions run in parallel.</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="case flip">
+          <div class="reel-col">
+            <div class="reel">
+              <video src="videos/BADLAB_PRODUCT.mp4#t=0.1" aria-label="BAD LAB product ad" muted loop playsinline
+                preload="metadata"></video>
+            </div>
+            <p class="reel-note">Product ad for BAD LAB</p>
+          </div>
+          <div class="case-body">
+            <h3>BAD LAB</h3>
+            <p class="kicker">Men's grooming and personal care</p>
+            <dl class="rows">
+              <div class="row">
+                <dt>Client</dt>
+                <dd>BAD LAB, a men's grooming and personal care brand</dd>
+              </div>
+              <div class="row">
+                <dt>Project type</dt>
+                <dd>Commercial short-form: product ads, grooming demos, before-and-after content</dd>
+              </div>
+              <div class="row">
+                <dt>My role</dt>
+                <dd>Video editor. I also contribute to advertising copy.</dd>
+              </div>
+              <div class="row">
+                <dt>Objective</dt>
+                <dd>Translate brand positioning into ads that support commercial goals.</dd>
+              </div>
+              <div class="row">
+                <dt>Creative approach</dt>
+                <dd>Clear product demonstrations and before-and-after storytelling, shaped by pacing, color, sound, and
+                  typography.</dd>
+              </div>
+              <div class="row">
+                <dt>Execution</dt>
+                <dd>I own post-production end to end. I built a repeatable short-form workflow covering asset
+                  organization, pacing, color, sound design, and typography.</dd>
+              </div>
+              <div class="row result">
+                <dt>Result</dt>
+                <dd>A single freelance engagement grew into a larger, ongoing scope, earned through consistent quality
+                  and on-time delivery.</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED WORKS =====
+         Yang dimuat saat halaman dibuka HANYA thumbnail (gambar kecil, lazy).
+         Video (href) baru diunduh ketika thumbnail diklik.
+         Ganti: href = file video, img src = thumbnail, teks .fw-cap = judul. -->
+    <section class="sec alt join" id="featured">
+      <div class="wrap fw">
+        <div class="head">
+          <h2 class="h2">Featured Works</h2>
+          <p class="lede">A selection of short-form edits. Tap to play.</p>
+        </div>
+        <ul class="fw-grid" data-stagger>
+          <li><a class="fw-item" href="videos/featured-1.mp4" aria-label="Play video: Featured work 1">
+              <img src="assets/featured/thumb-1.jpg" alt="" width="360" height="640" loading="lazy" decoding="async">
+              <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg></span>
+              <span class="fw-cap">Featured work 1</span></a></li>
+          <li><a class="fw-item" href="videos/featured-2.mp4" aria-label="Play video: Featured work 2">
+              <img src="assets/featured/thumb-2.jpg" alt="" width="360" height="640" loading="lazy" decoding="async">
+              <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg></span>
+              <span class="fw-cap">Featured work 2</span></a></li>
+          <li><a class="fw-item" href="videos/featured-3.mp4" aria-label="Play video: Featured work 3">
+              <img src="assets/featured/thumb-3.jpg" alt="" width="360" height="640" loading="lazy" decoding="async">
+              <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg></span>
+              <span class="fw-cap">Featured work 3</span></a></li>
+          <li><a class="fw-item" href="videos/featured-4.mp4" aria-label="Play video: Featured work 4">
+              <img src="assets/featured/thumb-4.jpg" alt="" width="360" height="640" loading="lazy" decoding="async">
+              <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg></span>
+              <span class="fw-cap">Featured work 4</span></a></li>
+          <li><a class="fw-item" href="videos/featured-5.mp4" aria-label="Play video: Featured work 5">
+              <img src="assets/featured/thumb-5.jpg" alt="" width="360" height="640" loading="lazy" decoding="async">
+              <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg></span>
+              <span class="fw-cap">Featured work 5</span></a></li>
+
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="results">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2">Results</h2>
+        </div>
+        <div class="stats" data-stagger>
+          <div class="stat">
+            <div class="n" data-to="111" data-suf="K+">111K+</div>
+            <p class="l">Views on a single BDGFOLK video</p>
+          </div>
+          <div class="stat">
+            <div class="n" data-to="1" data-suf="M+">1M+</div>
+            <p class="l">BDGFOLK Instagram audience</p>
+          </div>
+          <div class="stat">
+            <div class="n">Ongoing</div>
+            <p class="l">BAD LAB engagement, expanded into a larger scope</p>
+          </div>
+          <div class="stat">
+            <div class="n" data-to="2" data-suf=" brands">2 brands</div>
+            <p class="l">Produced at the same time, each with its own voice</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec alt" id="about">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2">About</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about">
+            <p class="big">I'm a Creative Content Producer specializing in short-form content. I take an idea from
+              concept to final video: strategy, story, script, filming, and edit.</p>
+            <p>I'm studying Computer Science, and it shapes how I work. I break creative problems into clear steps,
+              document the workflow, and deliver on time.</p>
+            <p>Right now I produce content for BDGFOLK and BAD LAB.</p>
+          </div>
+          <!-- Ganti dengan foto kamu (disarankan WebP, ±800x1000 px, < 150 KB) -->
+          <figure class="about-photo">
+            <img src="assets/about-deandra.webp" alt="Portrait of Deandra" width="800" height="1000" loading="lazy"
+              decoding="async">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="what">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2">What I Do</h2>
+        </div>
+        <div class="cols" data-stagger>
+          <div class="col">
+            <h3>Content Strategy</h3>
+            <ul>
+              <li>Creative Strategy</li>
+              <li>Content Planning</li>
+              <li>Brand Communication</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Storytelling &amp; Copy</h3>
+            <ul>
+              <li>Story Development</li>
+              <li>Copywriting</li>
+              <li>Scriptwriting</li>
+              <li>Voice-over Scripting</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Production</h3>
+            <ul>
+              <li>Videography</li>
+              <li>Visual Storytelling</li>
+              <li>On-location Production</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Post-Production</h3>
+            <ul>
+              <li>Short-form Editing</li>
+              <li>Commercial Editing</li>
+              <li>Sound Design</li>
+              <li>Color Grading</li>
+              <li>Motion / Visual Editing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec alt" id="experience">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2">Experience</h2>
+        </div>
+        <div>
+          <article class="exp">
+            <div>
+              <h3>BAD LAB</h3>
+              <p class="role">Freelance Video Editor</p>
+              <p class="when">Jan 2026 – Present</p>
+            </div>
+            <p>Own post-production for commercial campaigns. Contribute to ad copy. Built a repeatable short-form
+              workflow. The engagement expanded into ongoing work.</p>
+          </article>
+          <article class="exp">
+            <div>
+              <h3>BDGFOLK</h3>
+              <p class="role">Freelance Videographer &amp; Video Editor</p>
+              <p class="when">Jan 2026 – Present</p>
+            </div>
+            <p>Lead production from venue research to delivery: filming, voice-over scripts, captions, and edit. One
+              video passed 111K views.</p>
+          </article>
+          <article class="exp minor">
+            <div>
+              <h3>PT Melvar Lintasnusa</h3>
+              <p class="role">Junior Network Administrator</p>
+              <p class="when">Feb 2026 – Present</p>
+            </div>
+            <p>Structured troubleshooting and documentation in a technical environment.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="tools">
+      <div class="wrap two">
+        <div>
+          <h2>Tools</h2>
+          <dl class="kv">
+            <div>
+              <dt>Video</dt>
+              <dd>Adobe Premiere Pro, CapCut</dd>
+            </div>
+            <div>
+              <dt>Motion</dt>
+              <dd>Adobe After Effects</dd>
+            </div>
+            <div>
+              <dt>Audio</dt>
+              <dd>Logic Pro</dd>
+            </div>
+            <div>
+              <dt>Workflow</dt>
+              <dd>Notion</dd>
+            </div>
+            <div>
+              <dt>Design</dt>
+              <dd>Canva</dd>
+            </div>
+          </dl>
+        </div>
+        <div>
+          <h2>Toolkit</h2>
+          <!-- Logo di bawah adalah badge buatan sendiri. Untuk logo resmi, ganti isi <i> dengan: <img src="logo/premiere.svg" alt="" width="64" height="64"> -->
+          <div class="logos" data-stagger>
+            <div class="logo"><i><img src="assets/Adobe_Premiere_Pro_CC_icon.svg.webp" alt="" width="64"
+                  height="64"></i>Premiere Pro</div>
+            <div class="logo"><i><img src="assets/Adobe_After_Effects_CC_icon.svg.webp" alt="" width="64"
+                  height="64"></i>After Effects</div>
+            <div class="logo"><i><img src="assets/Capcut-logo.png" alt="" width="64" height="64"></i>CapCut
+            </div>
+            <div class="logo"><i><img src="assets/setup_logic - Diedit.jpg" alt="" width="64" height="64"></i>Logic Pro
+            </div>
+            <div class="logo"><i><img src="assets/notion-logo.webp" alt="" width="64" height="64"></i>Notion
+            </div>
+            <div class="logo"><i><img src="assets/canva-icon-logo.png" alt="" width="64" height="64"></i>Canva
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec contact" id="contact">
+      <div class="wrap" data-stagger>
+        <p class="eyebrow">Contact</p>
+        <h2 class="big">Let's work together.</h2>
+        <div>
+          <button class="mail" id="copyMail" type="button" aria-label="Copy email address">
+            <span>deaeurike@gmail.com</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+          </button>
+        </div>
+        <!-- GANTI link berikut dengan akun asli kamu -->
+        <ul class="social">
+          <li><a href="https://instagram.com/USERNAME" target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <path d="M17.5 6.5h.01" />
+              </svg></a></li>
+          <li><a href="https://www.linkedin.com/in/USERNAME" target="_blank" rel="noopener noreferrer"
+              aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg></a></li>
+          <li><a href="https://wa.me/628XXXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z" />
+                <path d="M9 8.5c0 3.5 2.5 6 6 6l1-1.3-1.8-.9-.8.7c-.9-.4-1.6-1.1-2-2l.7-.8-.9-1.8z" />
+              </svg></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">© 2026 Deandra. Creative Content Producer.</div>
+  </footer>
+
+  <!-- Popup video Featured Works (satu elemen <video> dipakai ulang untuk semua video) -->
+  <dialog class="lb" id="lb" aria-label="Video preview">
+    <span class="lb-count" aria-live="polite"></span>
+    <button class="lb-btn lb-close" type="button" aria-label="Close video">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+        aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+    <button class="lb-btn lb-prev" type="button" aria-label="Previous video">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M15 5l-7 7 7 7" />
+      </svg>
+    </button>
+    <div class="lb-frame">
+      <video playsinline loop controls preload="none"></video>
+    </div>
+    <button class="lb-btn lb-next" type="button" aria-label="Next video">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </dialog>
+
+  <script>
+    /* ===== Featured Works lightbox: video baru di-load saat diklik ===== */
+    (function () {
+      var d = document, de = d.documentElement, dlg = d.getElementById("lb");
+      /* Tanpa dukungan <dialog>: link tetap berfungsi (video dibuka langsung) */
+      if (!dlg || typeof dlg.showModal !== "function") return;
+
+      var frame = dlg.querySelector(".lb-frame"), vid = frame.querySelector("video"),
+        count = dlg.querySelector(".lb-count"),
+        items = [].slice.call(d.querySelectorAll(".fw-item")), cur = 0, sx = 0, sy = 0;
+
+      function load(i) {
+        cur = (i + items.length) % items.length;
+        var a = items[cur], img = a.querySelector("img");
+        frame.classList.add("loading");
+        vid.poster = img ? (img.currentSrc || img.src) : "";
+        vid.src = a.getAttribute("href");          /* <- di sinilah video mulai diunduh */
+        vid.muted = false;
+        var p = vid.play();
+        /* Jika browser menolak autoplay bersuara, putar tanpa suara */
+        if (p && p.catch) p.catch(function () { vid.muted = true; vid.play().catch(function () { }); });
+        count.textContent = (cur + 1) + " / " + items.length;
+      }
+
+      function open(i) {
+        de.classList.add("lb-open");
+        dlg.showModal();
+        load(i);
+      }
+
+      items.forEach(function (a, i) {
+        a.addEventListener("click", function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return; /* biarkan buka di tab baru */
+          e.preventDefault();
+          open(i);
+        });
+      });
+
+      /* Saat ditutup: hentikan & lepas video supaya unduhan berhenti dan memori bebas */
+      dlg.addEventListener("close", function () {
+        vid.pause();
+        vid.removeAttribute("src");
+        vid.load();
+        frame.classList.remove("loading");
+        de.classList.remove("lb-open");
+      });
+
+      dlg.querySelector(".lb-close").addEventListener("click", function () { dlg.close(); });
+      dlg.querySelector(".lb-prev").addEventListener("click", function () { load(cur - 1); });
+      dlg.querySelector(".lb-next").addEventListener("click", function () { load(cur + 1); });
+
+      /* Klik area gelap di luar video = tutup */
+      dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+
+      /* Keyboard: Esc (bawaan dialog), panah kiri/kanan */
+      dlg.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight") { e.preventDefault(); load(cur + 1); }
+        else if (e.key === "ArrowLeft") { e.preventDefault(); load(cur - 1); }
+      });
+
+      /* Swipe kiri/kanan di HP */
+      frame.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+      frame.addEventListener("touchend", function (e) {
+        var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+        if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) load(cur + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      /* Indikator loading */
+      vid.addEventListener("waiting", function () { frame.classList.add("loading"); });
+      ["playing", "canplay", "error", "pause"].forEach(function (ev) {
+        vid.addEventListener(ev, function () { frame.classList.remove("loading"); });
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var d = document, de = d.documentElement;
+      var bar = d.querySelector(".progress"), nav = d.querySelector(".nav");
+
+      /* Progress bar + bayangan nav saat scroll */
+      function onScroll() {
+        var m = de.scrollHeight - de.clientHeight;
+        bar.style.transform = "scaleX(" + (m > 0 ? de.scrollTop / m : 0) + ")";
+        nav.classList.toggle("sc", de.scrollTop > 8);
+      }
+      addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+      /* Salin email */
+      var mb = d.getElementById("copyMail"), lbl = mb.querySelector("span"), orig = lbl.textContent;
+      mb.addEventListener("click", function () {
+        function ok() { lbl.textContent = "Copied!"; setTimeout(function () { lbl.textContent = orig; }, 1600); }
+        function fallback() { location.href = "mailto:" + orig; }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(orig).then(ok, fallback);
+        else fallback();
+      });
+
+      /* Video reel: autoplay saat terlihat, klik untuk suara */
+      /* Video reel: autoplay saat terlihat + kontrol seek/waktu/play/suara */
+      var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var vids = d.querySelectorAll(".reel video");
+      var IC = {
+        play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+        pause: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>',
+        vol: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>',
+        mute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z" fill="currentColor"/><path d="M22 9l-6 6M16 9l6 6"/></svg>'
+      };
+      function fmt(s) {
+        if (!isFinite(s)) return "0:00";
+        var m = Math.floor(s / 60), x = Math.floor(s % 60);
+        return m + ":" + (x < 10 ? "0" : "") + x;
+      }
+      vids.forEach(function (v) {
+        var bar = d.createElement("div");
+        bar.className = "rc";
+        bar.innerHTML =
+          '<button type="button" class="rc-play"></button>' +
+          '<input class="rc-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video">' +
+          '<span class="rc-time">0:00 / 0:00</span>' +
+          '<button type="button" class="rc-mute"></button>';
+        v.parentNode.appendChild(bar);
+
+        var pb = bar.querySelector(".rc-play"), sk = bar.querySelector(".rc-seek"),
+          tm = bar.querySelector(".rc-time"), mb = bar.querySelector(".rc-mute"),
+          reel = v.parentNode, scrub = false, hideT;
+
+        /* Tampilkan bar; kalau video sedang main, sembunyikan lagi setelah 3 detik */
+        function show(keep) {
+          bar.classList.add("show");
+          clearTimeout(hideT);
+          if (!keep && !v.paused && !scrub) {
+            hideT = setTimeout(function () { bar.classList.remove("show"); }, 1500);
+          }
+        }
+
+        function icons() {
+          pb.innerHTML = v.paused ? IC.play : IC.pause;
+          pb.setAttribute("aria-label", v.paused ? "Play" : "Pause");
+          mb.innerHTML = v.muted ? IC.mute : IC.vol;
+          mb.setAttribute("aria-label", v.muted ? "Unmute" : "Mute");
+        }
+        function upd() {
+          if (!scrub && v.duration) sk.value = (v.currentTime / v.duration) * 1000;
+          tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration);
+        }
+        function toggle() {
+          if (v.paused) { v.dataset.manual = ""; v.play().catch(function () { }); }
+          else { v.dataset.manual = "1"; v.pause(); }
+        }
+
+        ["timeupdate", "loadedmetadata", "durationchange"].forEach(function (e) { v.addEventListener(e, upd); });
+        ["play", "pause", "volumechange"].forEach(function (e) { v.addEventListener(e, icons); });
+        v.addEventListener("play", function () { show(); });
+        v.addEventListener("pause", function () { show(true); });
+
+        sk.addEventListener("input", function () {
+          scrub = true;
+          show(true);
+          if (v.duration) v.currentTime = (sk.value / 1000) * v.duration;
+          tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration);
+        });
+        sk.addEventListener("change", function () { scrub = false; show(); });
+
+        pb.addEventListener("click", function () { toggle(); show(); });
+        mb.addEventListener("click", function () { v.muted = !v.muted; show(); });
+
+        /* Klik video: kalau bar tersembunyi, munculkan dulu. Kalau sudah tampil, play/pause. */
+        v.addEventListener("click", function () {
+          if (!bar.classList.contains("show")) { show(); return; }
+          toggle();
+        });
+
+        /* Mouse di atas video memunculkan bar (sentuhan tidak dihitung) */
+        reel.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") show(); });
+        reel.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") show(); });
+
+        /* Navigasi keyboard */
+        bar.addEventListener("focusin", function () { show(true); });
+        bar.addEventListener("focusout", function () { show(); });
+
+        icons(); upd(); show(true);
+      });
+      if (reduce || !("IntersectionObserver" in window)) return;
+      var vio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) {
+            if (v.dataset.manual !== "1") { var p = v.play(); if (p && p.catch) p.catch(function () { }); }
+          } else v.pause();
+        });
+      }, { threshold: 0.5 });
+      vids.forEach(function (v) { vio.observe(v); });
+      /* Judul hero: pecah per kata */
+      var hero = d.querySelector(".hero"), h1 = hero.querySelector("h1"), txt = h1.textContent.trim();
+      h1.setAttribute("aria-label", txt);
+      h1.innerHTML = txt.split(/\s+/).map(function (w, i) {
+        return '<span class="w" aria-hidden="true"><span class="wi" style="--i:' + i + '">' + w + "</span></span>";
+      }).join(" ");
+      requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add("go"); }); });
+
+      /* Scroll reveal dengan jeda bertahap */
+      d.querySelectorAll("[data-stagger]").forEach(function (p) {
+        [].forEach.call(p.children, function (c, i) { c.classList.add("rv"); c.style.setProperty("--d", i * 90 + "ms"); });
+      });
+      d.querySelectorAll(".head,.case,.about,.about-photo,.exp,.two>div,.hero .sub,.hero .cta,.hero .proof").forEach(function (e) { e.classList.add("rv"); });
+
+      function run(n) {
+        var to = +n.dataset.to, s = n.dataset.suf || "", t0 = null;
+        function f(t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / 1200, 1);
+          n.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + s;
+          if (p < 1) requestAnimationFrame(f);
+        }
+        requestAnimationFrame(f);
+      }
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add("in");
+          e.target.querySelectorAll("[data-to]").forEach(run);
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
+      d.querySelectorAll(".rv").forEach(function (e) { io.observe(e); });
+
+      /* Menu aktif sesuai section */
+      var links = {};
+      d.querySelectorAll('.nav a[href^="#"]').forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+      var sio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          Object.keys(links).forEach(function (k) { links[k].classList.remove("on"); });
+          var a = links[e.target.id]; if (a && !a.classList.contains("pill-sm")) a.classList.add("on");
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+      d.querySelectorAll("main section[id]").forEach(function (s) { sio.observe(s); });
+    })();
+  </script>
+</body>
+
+</html>

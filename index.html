@@ -1,0 +1,3180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Deandra Eurike | Video Editor & Creative Content Producer</title>
+    <meta name="description"
+        content="Deandra Eurike is a video editor and creative content producer in Jakarta. Short-form video for brands, from concept and filming to final edit.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script>
+        /* Animasi aktif hanya jika browser mendukung dan pengguna tidak memilih "reduce motion" */
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) document.documentElement.classList.add("js");
+    </script>
+    <style>
+        :root {
+            --bg: #fff;
+            --bg-alt: #f5f5f7;
+            --fg: #1d1d1f;
+            --fg-2: #6e6e73;
+            --line: #d2d2d7;
+            --accent: #0071e3;
+            --accent-fg: #fff;
+            --link: #0066cc;
+            --nav-bg: rgba(255, 255, 255, .72);
+            --ph: #e8e8ed;
+            --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+            --wrap: 1080px;
+            --reel: clamp(280px, 26vw, 400px);
+            --ease: cubic-bezier(.2, .7, .2, 1);
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #000;
+                --bg-alt: #161617;
+                --fg: #f5f5f7;
+                --fg-2: #a1a1a6;
+                --line: #38383a;
+                --link: #2997ff;
+                --nav-bg: rgba(0, 0, 0, .72);
+                --ph: #1d1d1f;
+                color-scheme: dark
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #000;
+            --bg-alt: #161617;
+            --fg: #f5f5f7;
+            --fg-2: #a1a1a6;
+            --line: #38383a;
+            --link: #2997ff;
+            --nav-bg: rgba(0, 0, 0, .72);
+            --ph: #1d1d1f;
+            color-scheme: dark
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+            -webkit-text-size-adjust: 100%
+        }
+
+        @media (min-width:1100px) {
+            html {
+                font-size: 100%;
+                --wrap: 1160px
+            }
+        }
+
+        @media (min-width:1440px) {
+            html {
+                font-size: 112.5%;
+                --wrap: 1280px
+            }
+        }
+
+        @media (min-width:1920px) {
+            html {
+                font-size: 125%;
+                --wrap: 1440px
+            }
+        }
+
+        @media (min-width:2560px) {
+            html {
+                font-size: 150%;
+                --wrap: 1680px
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--font);
+            font-size: 1.0625rem;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        dl,
+        dd {
+            margin: 0
+        }
+
+        ul {
+            padding: 0;
+            list-style: none
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px
+        }
+
+        img,
+        video {
+            max-width: 100%
+        }
+
+        .wrap {
+            max-width: var(--wrap);
+            margin-inline: auto;
+            padding-inline: max(clamp(16px, 5vw, 48px), env(safe-area-inset-left, 0px)) max(clamp(16px, 5vw, 48px), env(safe-area-inset-right, 0px))
+        }
+
+        .sec {
+            padding-block: clamp(72px, 11vw, 140px);
+            scroll-margin-top: 48px
+        }
+
+        .sec.alt {
+            background: var(--bg-alt)
+        }
+
+        .eyebrow {
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--fg-2)
+        }
+
+        .h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -.03em;
+            line-height: 1.08;
+            text-wrap: balance
+        }
+
+        .lede {
+            color: var(--fg-2);
+            font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+            line-height: 1.4;
+            margin-top: 14px;
+            max-width: 36rem
+        }
+
+        .head {
+            margin-bottom: clamp(40px, 6vw, 72px)
+        }
+
+        .todo {
+            color: var(--fg-2);
+            border-bottom: 1px dashed var(--fg-2)
+        }
+
+        /* ===== Animasi ===== */
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: 0 50%;
+            z-index: 30;
+            pointer-events: none
+        }
+
+        /* Scroll reveal: elemen muncul pelan dari bawah */
+        .js .rv {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .9s var(--ease), transform .9s var(--ease);
+            transition-delay: var(--d, 0s)
+        }
+
+        .js .rv.in {
+            opacity: 1;
+            transform: none
+        }
+
+        /* Judul hero: kata muncul satu per satu */
+        .w {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+            padding-bottom: .1em;
+            margin-bottom: -.1em
+        }
+
+        .wi {
+            display: inline-block;
+            transform: translateY(110%);
+            transition: transform 1s var(--ease);
+            transition-delay: calc(var(--i) * 90ms)
+        }
+
+        .hero.go .wi {
+            transform: none
+        }
+
+        .hero .badge {
+            --d: .05s
+        }
+
+        .hero .sub {
+            --d: .45s
+        }
+
+        .hero .cta {
+            --d: .6s
+        }
+
+        .hero .chat {
+            --d: .68s
+        }
+
+        .hero .proof {
+            --d: .75s
+        }
+
+        /* Nav */
+        .nav {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 10;
+            background: var(--nav-bg);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--line);
+            transition: box-shadow .3s
+        }
+
+        .nav.sc {
+            box-shadow: 0 6px 24px rgba(0, 0, 0, .08)
+        }
+
+        .nav .wrap {
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px
+        }
+
+        .brand {
+            color: var(--fg);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: -.01em;
+            white-space: nowrap
+        }
+
+        .brand:hover {
+            text-decoration: none
+        }
+
+        .nav ul {
+            display: flex;
+            align-items: center;
+            gap: clamp(14px, 3vw, 32px)
+        }
+
+        .nav li a {
+            color: var(--fg-2);
+            font-size: .8125rem;
+            transition: color .2s
+        }
+
+        .nav li a:hover,
+        .nav li a.on {
+            color: var(--fg);
+            text-decoration: none
+        }
+
+        .pill-sm {
+            background: var(--fg);
+            color: var(--bg) !important;
+            padding: 5px 12px;
+            border-radius: 980px;
+            font-weight: 500;
+            white-space: nowrap
+        }
+
+        @media (max-width:980px) {
+            .n-xl {
+                display: none
+            }
+        }
+
+        @media (max-width:640px) {
+            .n-lg {
+                display: none
+            }
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding-block: clamp(64px, 11vw, 140px) clamp(56px, 8vw, 100px)
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px 8px 12px;
+            margin-bottom: 28px;
+            border-radius: 999px;
+            box-shadow: inset 0 0 0 1px var(--line);
+            font-size: .875rem;
+            font-weight: 500
+        }
+
+        .badge i {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #1fc46a;
+            animation: ping 2.2s infinite
+        }
+
+        @keyframes ping {
+            0% {
+                box-shadow: 0 0 0 0 rgba(31, 196, 106, .6)
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(31, 196, 106, 0)
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(31, 196, 106, 0)
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.75rem, 9vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -.04em;
+            line-height: 1.02;
+            text-wrap: balance;
+            max-width: 12ch;
+            margin-inline: auto
+        }
+
+        .hero .sub {
+            font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+            line-height: 1.35;
+            color: var(--fg-2);
+            max-width: 30em;
+            margin: 24px auto 0;
+            text-wrap: balance
+        }
+
+        .hero .sub b {
+            color: var(--fg);
+            font-weight: 600
+        }
+
+        .cta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px 28px;
+            margin-top: 36px
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--accent-fg);
+            font-size: 1.0625rem;
+            padding: 12px 26px;
+            border-radius: 980px;
+            transition: background .2s, transform .3s var(--ease), box-shadow .3s
+        }
+
+        .btn:hover {
+            background: #0077ed;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(0, 113, 227, .35)
+        }
+
+        .link-arrow::after {
+            content: " \203A";
+            display: inline-block;
+            transition: transform .3s var(--ease)
+        }
+
+        .link-arrow:hover::after {
+            transform: translateX(5px)
+        }
+
+        .chat {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 28px;
+            padding: 8px 20px 8px 8px;
+            border-radius: 999px;
+            background: var(--bg);
+            box-shadow: inset 0 0 0 1px var(--line);
+            color: var(--fg);
+            text-align: left;
+            transition: translate .3s var(--ease)
+        }
+
+        .js .chat.rv {
+            transition: opacity .9s var(--ease), transform .9s var(--ease), translate .3s var(--ease);
+            transition-delay: var(--d, 0s), var(--d, 0s), 0s
+        }
+
+        .chat:hover {
+            text-decoration: none;
+            translate: 0 -3px
+        }
+
+        .chat img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--ph)
+        }
+
+        .chat small {
+            display: block;
+            color: var(--fg-2);
+            font-size: .8rem;
+            line-height: 1.2
+        }
+
+        .chat strong {
+            font-weight: 600;
+            line-height: 1.2
+        }
+
+        .proof {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px 14px;
+            margin-top: clamp(40px, 6vw, 64px);
+            font-size: .875rem;
+            color: var(--fg-2)
+        }
+
+        .proof span+span::before {
+            content: "\00B7";
+            margin-right: 14px
+        }
+
+        .proof b {
+            color: var(--fg);
+            font-weight: 600
+        }
+
+        /* Hero dua kolom: teks kiri, video kanan */
+        .hero {
+            text-align: left;
+            padding-block: clamp(48px, 8vw, 110px) clamp(56px, 8vw, 100px)
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+            gap: clamp(32px, 5vw, 72px);
+            align-items: center
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6.5vw, 5.25rem);
+            max-width: 10ch;
+            margin-inline: 0
+        }
+
+        .hero .sub {
+            margin: 24px 0 0;
+            max-width: 26em
+        }
+
+        .hero .cta,
+        .hero .proof {
+            justify-content: flex-start
+        }
+
+        .hero-reels {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            aspect-ratio: 1 / 1.1;
+            justify-self: end
+        }
+
+        .hr {
+            position: absolute;
+            width: 54%;
+            aspect-ratio: 9/16;
+            border-radius: clamp(16px, 2.2vw, 26px);
+            overflow: hidden;
+            background: var(--ph);
+            border: 1px solid var(--line);
+            color: #fff;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, .18);
+            transition: translate .5s var(--ease), rotate .5s var(--ease), box-shadow .5s var(--ease)
+        }
+
+        .hr-1 {
+            left: 0;
+            top: 0;
+            rotate: -6deg;
+            z-index: 1
+        }
+
+        .hr-2 {
+            right: 0;
+            top: 12%;
+            rotate: 5deg;
+            z-index: 2
+        }
+
+        .hr:hover {
+            text-decoration: none;
+            translate: 0 -8px;
+            rotate: 0deg;
+            z-index: 3;
+            box-shadow: 0 32px 70px rgba(0, 0, 0, .28)
+        }
+
+        .hr video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none
+        }
+
+        .hr::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .55), transparent 40%);
+            pointer-events: none
+        }
+
+        .hr-cap {
+            position: absolute;
+            left: 14px;
+            right: 14px;
+            bottom: 12px;
+            z-index: 1;
+            font-size: .875rem;
+            font-weight: 600;
+            line-height: 1.3;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, .4)
+        }
+
+        .hr-cap small {
+            display: block;
+            font-size: .75rem;
+            font-weight: 500;
+            opacity: .75
+        }
+
+        @media (max-width:860px) {
+            .hero-grid {
+                grid-template-columns: minmax(0, 1fr)
+            }
+
+            .hero-reels {
+                justify-self: center;
+                max-width: 440px;
+                margin-top: 8px
+            }
+        }
+
+        @media (max-width:480px) {
+            .hr-cap {
+                left: 10px;
+                right: 10px;
+                bottom: 9px;
+                font-size: .75rem
+            }
+
+            .hr-cap small {
+                font-size: .6875rem
+            }
+        }
+
+        /* Worked with (marquee) */
+        .trust {
+            border-block: 1px solid var(--line);
+            padding: 26px 0;
+            overflow: hidden
+        }
+
+        .trust .wrap {
+            display: flex;
+            align-items: center;
+            gap: 36px
+        }
+
+        .trust p {
+            color: var(--fg-2);
+            white-space: nowrap;
+            font-size: .9375rem
+        }
+
+        .mq {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)
+        }
+
+        .mq-t {
+            display: flex;
+            width: max-content;
+            animation: mq 32s linear infinite
+        }
+
+        .mq:hover .mq-t {
+            animation-play-state: paused
+        }
+
+        @keyframes mq {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .lg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding-inline: 38px;
+            height: 44px;
+            white-space: nowrap
+        }
+
+        .lg b {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -.03em
+        }
+
+        .lg img {
+            height: 36px;
+            width: auto;
+            filter: grayscale(1);
+            opacity: .8
+        }
+
+        .lg.hi b {
+            display: none
+        }
+
+        @media (max-width:640px) {
+            .trust .wrap {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px
+            }
+
+            .mq {
+                width: 100%;
+                flex: none
+            }
+        }
+
+        /* Work */
+        .case {
+            display: grid;
+            grid-template-columns: minmax(0, var(--reel)) minmax(0, 1fr);
+            gap: clamp(32px, 6vw, 96px);
+            align-items: center
+        }
+
+        .case+.case {
+            margin-top: clamp(72px, 10vw, 140px)
+        }
+
+        .reel-col {
+            min-width: 0
+        }
+
+        .reel {
+            position: relative;
+            width: 100%;
+            max-width: var(--reel);
+            aspect-ratio: 9/16;
+            border-radius: 28px;
+            overflow: hidden;
+            background: var(--ph);
+            border: 1px solid var(--line);
+            transition: transform .6s var(--ease), box-shadow .6s var(--ease)
+        }
+
+        .reel:hover {
+            transform: translateY(-8px) scale(1.015);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, .2)
+        }
+
+        .reel video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        /* Kontrol reel: seek, waktu, play/pause, suara */
+        .rc {
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2px 8px;
+            padding: 8px 10px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, .45);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            opacity: 0;
+            transform: translateY(8px);
+            pointer-events: none;
+            transition: opacity .35s var(--ease), transform .35s var(--ease)
+        }
+
+        .rc.show {
+            opacity: 1;
+            transform: none;
+            pointer-events: auto
+        }
+
+        .rc-seek {
+            order: -1;
+            flex: 1 1 100%;
+            min-width: 0;
+            height: 18px;
+            margin: 0;
+            accent-color: #fff;
+            cursor: pointer
+        }
+
+        .rc button {
+            flex: none;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            color: #fff;
+            display: grid;
+            place-items: center;
+            cursor: pointer
+        }
+
+        .rc button:hover {
+            background: rgba(255, 255, 255, .2)
+        }
+
+        .rc button svg {
+            width: 16px;
+            height: 16px
+        }
+
+        .rc-time {
+            flex: 1;
+            font-size: .75rem;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap
+        }
+
+        .ph {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 24px;
+            text-align: center;
+            color: var(--fg-2)
+        }
+
+        .ph span {
+            font-size: .75rem;
+            font-weight: 500;
+            letter-spacing: .08em;
+            text-transform: uppercase
+        }
+
+        .ph small {
+            font-size: .8125rem;
+            line-height: 1.35;
+            max-width: 18em
+        }
+
+        .reel-note {
+            margin-top: 12px;
+            font-size: .8125rem;
+            color: var(--fg-2);
+            max-width: var(--reel)
+        }
+
+        .case-body {
+            min-width: 0
+        }
+
+        .cat {
+            color: var(--fg-2);
+            font-size: .98rem
+        }
+
+        .cat b {
+            color: var(--fg);
+            font-weight: 600
+        }
+
+        .case h3 {
+            font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -.03em;
+            line-height: 1.1;
+            margin-top: 6px
+        }
+
+        .case .desc {
+            color: var(--fg-2);
+            margin-top: 18px;
+            max-width: 34rem
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px
+        }
+
+        .chips li {
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: .8125rem;
+            box-shadow: inset 0 0 0 1px var(--line)
+        }
+
+        .case .btn {
+            margin-top: 26px;
+            border: 0;
+            font-family: inherit;
+            cursor: pointer
+        }
+
+        .case .btn svg {
+            width: 18px;
+            height: 18px;
+            vertical-align: -3px;
+            margin-left: 8px
+        }
+
+        @media (min-width:820px) {
+            .case.flip .reel-col {
+                order: 2
+            }
+        }
+
+        @media (max-width:819px) {
+            .case {
+                grid-template-columns: minmax(0, 1fr)
+            }
+
+            .reel,
+            .reel-note {
+                max-width: min(340px, 100%)
+            }
+        }
+
+        /* ===== Featured Works (thumbnail kecil, video baru dimuat saat diklik) ===== */
+        .sec.join {
+            padding-top: 0
+        }
+
+        .fw {
+            border-top: 1px solid var(--line);
+            padding-top: clamp(56px, 8vw, 96px)
+        }
+
+        /* 5 video sejajar dalam satu baris (di layar sempit: geser ke samping) */
+        .fw-grid {
+            --g: clamp(10px, 1.6vw, 20px);
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: var(--g);
+            max-width: 980px;
+            margin-inline: auto
+        }
+
+        .fw-grid li {
+            min-width: 0
+        }
+
+        @media (max-width:760px) {
+            .fw-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding-block: 8px 12px
+            }
+
+            .fw-grid li {
+                flex: 0 0 clamp(128px, 36vw, 170px);
+                scroll-snap-align: start
+            }
+        }
+
+        .fw-item {
+            position: relative;
+            display: block;
+            aspect-ratio: 9/16;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--ph);
+            border: 1px solid var(--line);
+            color: #fff;
+            transition: transform .5s var(--ease), box-shadow .5s var(--ease)
+        }
+
+        .fw-item:hover {
+            text-decoration: none;
+            transform: translateY(-6px);
+            box-shadow: 0 20px 44px rgba(0, 0, 0, .2)
+        }
+
+        .fw-item img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s var(--ease)
+        }
+
+        .fw-item:hover img {
+            transform: scale(1.06)
+        }
+
+        .fw-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .6), transparent 45%);
+            pointer-events: none
+        }
+
+        .fw-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 56px;
+            height: 56px;
+            margin: -28px 0 0 -28px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(0, 0, 0, .35);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            z-index: 1;
+            transition: transform .4s var(--ease), background .3s
+        }
+
+        .fw-play svg {
+            width: 20px;
+            height: 20px;
+            margin-left: 3px
+        }
+
+        .fw-item:hover .fw-play {
+            transform: scale(1.12);
+            background: rgba(0, 0, 0, .55)
+        }
+
+        .fw-cap {
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: 14px;
+            z-index: 1;
+            font-size: .875rem;
+            font-weight: 600;
+            line-height: 1.3;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, .4)
+        }
+
+        .fw-cap small {
+            display: block;
+            font-size: .75rem;
+            font-weight: 500;
+            opacity: .75
+        }
+
+        @media (max-width:480px) {
+            .fw-item {
+                border-radius: 12px
+            }
+
+            .fw-play {
+                width: 36px;
+                height: 36px;
+                margin: -18px 0 0 -18px
+            }
+
+            .fw-cap {
+                font-size: .6875rem;
+                left: 8px;
+                right: 8px;
+                bottom: 8px
+            }
+
+            .fw-cap small {
+                font-size: .625rem
+            }
+        }
+
+        /* Lightbox (popup video 9:16 + detail proyek) */
+        html.lb-open {
+            overflow: hidden
+        }
+
+        .lb {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            overflow: hidden
+        }
+
+        .lb[open] {
+            display: grid;
+            place-items: center
+        }
+
+        .lb::backdrop {
+            background: rgba(0, 0, 0, .85);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px)
+        }
+
+        .lb[open]::backdrop {
+            animation: lbFade .35s ease
+        }
+
+        .lb[open] .lb-stage {
+            animation: lbIn .45s var(--ease)
+        }
+
+        @keyframes lbFade {
+            from {
+                opacity: 0
+            }
+        }
+
+        @keyframes lbIn {
+            from {
+                opacity: 0;
+                transform: scale(.94)
+            }
+        }
+
+        .lb-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(24px, 3.5vw, 48px);
+            width: 100%;
+            padding-inline: clamp(60px, 8vw, 110px)
+        }
+
+        .lb-frame {
+            flex: none;
+            position: relative;
+            width: min(calc(92vh * 9 / 16), 46vw);
+            width: min(calc(92dvh * 9 / 16), 46vw);
+            aspect-ratio: 9/16;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 40px 120px rgba(0, 0, 0, .6)
+        }
+
+        .lb-frame video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #000
+        }
+
+        .lb-frame.loading::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 36px;
+            height: 36px;
+            margin: -18px 0 0 -18px;
+            border: 3px solid rgba(255, 255, 255, .25);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: lbSpin .8s linear infinite;
+            pointer-events: none
+        }
+
+        @keyframes lbSpin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .lb-info {
+            flex: none;
+            width: min(340px, 30vw);
+            max-height: 92vh;
+            max-height: 92dvh;
+            overflow: auto;
+            display: grid;
+            gap: 14px;
+            align-content: center
+        }
+
+        .lb-info .lb-cat {
+            color: rgba(255, 255, 255, .65);
+            font-size: .9375rem
+        }
+
+        .lb-info .lb-cat b {
+            color: #fff;
+            font-weight: 600
+        }
+
+        .lb-info h3 {
+            font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -.03em;
+            line-height: 1.05
+        }
+
+        .lb-info .lb-desc {
+            color: rgba(255, 255, 255, .75);
+            font-size: .9375rem
+        }
+
+        .lb-info .chips {
+            margin-top: 0
+        }
+
+        .lb-info .chips li {
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .28)
+        }
+
+        .lb-info .lb-meta div {
+            display: grid;
+            grid-template-columns: 5.5rem minmax(0, 1fr);
+            gap: 10px;
+            padding: 9px 0;
+            border-top: 1px solid rgba(255, 255, 255, .18);
+            font-size: .875rem
+        }
+
+        .lb-info .lb-meta dt {
+            color: rgba(255, 255, 255, .55)
+        }
+
+        .lb-info a {
+            color: #6cb4ff;
+            text-decoration: underline;
+            text-underline-offset: 3px
+        }
+
+        .lb-btn {
+            position: fixed;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, .14);
+            color: #fff;
+            cursor: pointer;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            transition: background .25s, transform .3s var(--ease)
+        }
+
+        .lb-btn:hover {
+            background: rgba(255, 255, 255, .28)
+        }
+
+        .lb-btn svg {
+            width: 20px;
+            height: 20px
+        }
+
+        .lb-close {
+            top: max(16px, env(safe-area-inset-top, 0px));
+            right: max(16px, env(safe-area-inset-right, 0px))
+        }
+
+        .lb-prev,
+        .lb-next {
+            top: 50%;
+            margin-top: -22px
+        }
+
+        .lb-prev {
+            left: clamp(12px, 3vw, 40px)
+        }
+
+        .lb-next {
+            right: clamp(12px, 3vw, 40px)
+        }
+
+        .lb-count {
+            position: fixed;
+            top: max(28px, calc(env(safe-area-inset-top, 0px) + 12px));
+            left: max(20px, env(safe-area-inset-left, 0px));
+            z-index: 2;
+            font-size: .8125rem;
+            color: rgba(255, 255, 255, .7);
+            font-variant-numeric: tabular-nums
+        }
+
+        /* Layar sempit: video di atas, detail di bawah */
+        @media (max-width:900px) {
+            .lb-stage {
+                flex-direction: column;
+                gap: 16px;
+                padding-inline: 0
+            }
+
+            .lb-frame {
+                width: min(100vw, calc(54vh * 9 / 16));
+                width: min(100vw, calc(54dvh * 9 / 16));
+                border-radius: 16px
+            }
+
+            .lb-info {
+                width: min(100%, 460px);
+                max-height: calc(100vh - 54vh - 110px);
+                max-height: calc(100dvh - 54dvh - 110px);
+                padding-inline: 20px;
+                gap: 10px
+            }
+
+            .lb-info h3 {
+                font-size: 1.5rem
+            }
+        }
+
+        @media (max-width:600px) {
+
+            .lb-prev,
+            .lb-next {
+                display: none
+            }
+        }
+
+        /* Results */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 40px 32px
+        }
+
+        .stat {
+            border-top: 1px solid var(--line);
+            padding-top: 20px;
+            min-width: 0
+        }
+
+        .stat .n {
+            font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+            font-weight: 700;
+            letter-spacing: -.04em;
+            line-height: 1.05;
+            font-variant-numeric: tabular-nums;
+            overflow-wrap: anywhere
+        }
+
+        .stat .l {
+            margin-top: 12px;
+            color: var(--fg-2);
+            font-size: .9375rem;
+            line-height: 1.4
+        }
+
+        /* Pernyataan (kata menyala saat di-scroll) */
+        .scrub {
+            padding-block: clamp(80px, 12vw, 180px)
+        }
+
+        .scrub p {
+            font-size: clamp(1.9rem, 5vw, 3.75rem);
+            font-weight: 700;
+            letter-spacing: -.035em;
+            line-height: 1.12;
+            max-width: 26em;
+            text-wrap: balance
+        }
+
+        .js .scrub .sw {
+            color: var(--line);
+            transition: color .35s
+        }
+
+        .js .scrub .sw.on {
+            color: var(--fg)
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: clamp(32px, 6vw, 80px);
+            align-items: center
+        }
+
+        .about {
+            max-width: 46rem
+        }
+
+        .about .big {
+            font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+            font-weight: 600;
+            letter-spacing: -.025em;
+            line-height: 1.25;
+            text-wrap: balance
+        }
+
+        .about p+p {
+            margin-top: 20px;
+            color: var(--fg-2);
+            font-size: 1.1875rem;
+            line-height: 1.5
+        }
+
+        .about .kv {
+            margin-top: 32px
+        }
+
+        .about .kv>div {
+            grid-template-columns: 120px minmax(0, 1fr)
+        }
+
+        .about-photo {
+            margin: 0;
+            width: 100%;
+            max-width: 420px;
+            justify-self: end;
+            aspect-ratio: 4/5;
+            border-radius: 28px;
+            overflow: hidden;
+            background: var(--ph);
+            border: 1px solid var(--line);
+            --d: .15s
+        }
+
+        .about-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        @media (max-width:760px) {
+            .about-grid {
+                grid-template-columns: minmax(0, 1fr)
+            }
+
+            .about-photo {
+                order: -1;
+                max-width: 340px;
+                justify-self: start
+            }
+        }
+
+        /* Services */
+        .svc-grid {
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+            gap: clamp(30px, 6vw, 90px)
+        }
+
+        .svc-list li {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 22px 0;
+            border-top: 1px solid var(--line);
+            transition: padding .4s var(--ease), color .3s
+        }
+
+        .svc-list li:last-child {
+            border-bottom: 1px solid var(--line)
+        }
+
+        .svc-list li:hover {
+            padding-left: 14px;
+            color: var(--accent)
+        }
+
+        .svc-list b {
+            font-size: clamp(1.15rem, 2.2vw, 1.65rem);
+            font-weight: 700;
+            letter-spacing: -.025em;
+            line-height: 1.2
+        }
+
+        .svc-list span {
+            color: var(--fg-2);
+            font-size: .9rem;
+            text-align: right;
+            max-width: 15rem
+        }
+
+        @media (max-width:860px) {
+            .svc-grid {
+                grid-template-columns: minmax(0, 1fr)
+            }
+
+            .svc-list li {
+                flex-direction: column;
+                gap: 4px
+            }
+
+            .svc-list span {
+                text-align: left;
+                max-width: none
+            }
+        }
+
+        /* Experience */
+        .exp {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+            gap: 8px 40px;
+            padding-block: 28px;
+            border-top: 1px solid var(--line)
+        }
+
+        .exp:last-child {
+            border-bottom: 1px solid var(--line)
+        }
+
+        .exp h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -.02em;
+            line-height: 1.2
+        }
+
+        .exp .role {
+            margin-top: 4px
+        }
+
+        .exp .when {
+            color: var(--fg-2);
+            font-size: .875rem;
+            margin-top: 2px
+        }
+
+        .exp p {
+            min-width: 0
+        }
+
+        .exp.minor h3 {
+            font-size: 1.125rem;
+            font-weight: 500
+        }
+
+        .exp.minor p,
+        .exp.minor .role {
+            color: var(--fg-2)
+        }
+
+        @media (max-width:700px) {
+            .exp {
+                grid-template-columns: minmax(0, 1fr)
+            }
+        }
+
+        /* Tools + logo aplikasi */
+        .two {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 56px 48px
+        }
+
+        @media (max-width:760px) {
+            .two {
+                grid-template-columns: minmax(0, 1fr)
+            }
+        }
+
+        .two h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -.025em;
+            margin-bottom: 20px
+        }
+
+        .kv>div {
+            display: grid;
+            grid-template-columns: 110px minmax(0, 1fr);
+            gap: 6px 20px;
+            padding-block: 14px;
+            border-top: 1px solid var(--line)
+        }
+
+        .kv>div:last-child {
+            border-bottom: 1px solid var(--line)
+        }
+
+        .kv dt {
+            font-size: .75rem;
+            font-weight: 500;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--fg-2);
+            padding-top: 4px
+        }
+
+        .kv dd {
+            min-width: 0
+        }
+
+        .logos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+            gap: 28px 16px
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            font-size: .8125rem;
+            color: var(--fg-2)
+        }
+
+        .logo i {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            font: 700 1.375rem/1 var(--font);
+            font-style: normal;
+            letter-spacing: -.04em;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .14);
+            transition: transform .45s var(--ease), box-shadow .45s var(--ease)
+        }
+
+        .logo:hover i {
+            transform: translateY(-8px) rotate(-4deg) scale(1.06);
+            box-shadow: 0 18px 32px rgba(0, 0, 0, .25)
+        }
+
+        .logo:hover {
+            color: var(--fg)
+        }
+
+        /* Workflow */
+        .steps {
+            position: relative;
+            display: grid;
+            max-width: 760px
+        }
+
+        .steps::before {
+            content: "";
+            position: absolute;
+            left: 21px;
+            top: 22px;
+            bottom: 22px;
+            width: 2px;
+            background: var(--line)
+        }
+
+        .steps .fill {
+            position: absolute;
+            left: 21px;
+            top: 22px;
+            bottom: 22px;
+            width: 2px;
+            background: var(--accent);
+            transform: scaleY(var(--p, 1));
+            transform-origin: 50% 0
+        }
+
+        .step {
+            position: relative;
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr);
+            gap: 28px;
+            padding-block: 22px
+        }
+
+        .step i {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-alt);
+            box-shadow: inset 0 0 0 2px var(--line);
+            font-size: 1rem;
+            font-weight: 700;
+            font-style: normal;
+            transition: background .4s, color .4s, box-shadow .4s
+        }
+
+        .step.on i {
+            background: var(--accent);
+            color: var(--accent-fg);
+            box-shadow: none
+        }
+
+        .step h3 {
+            font-size: clamp(1.35rem, 3vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -.03em;
+            line-height: 1.1
+        }
+
+        .step p {
+            color: var(--fg-2);
+            margin-top: 6px;
+            max-width: 34rem
+        }
+
+        .js .step>div {
+            opacity: .35;
+            transition: opacity .5s
+        }
+
+        .js .step.on>div {
+            opacity: 1
+        }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+            gap: clamp(30px, 6vw, 90px)
+        }
+
+        details {
+            border-top: 1px solid var(--line)
+        }
+
+        details:last-child {
+            border-bottom: 1px solid var(--line)
+        }
+
+        summary {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 22px 0;
+            cursor: pointer;
+            font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -.015em
+        }
+
+        summary::-webkit-details-marker {
+            display: none
+        }
+
+        summary i {
+            position: relative;
+            flex: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 1px var(--line);
+            transition: transform .4s var(--ease), background .3s
+        }
+
+        summary i::before,
+        summary i::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 12px;
+            height: 2px;
+            margin: -1px 0 0 -6px;
+            background: currentColor;
+            transition: transform .4s var(--ease)
+        }
+
+        summary i::after {
+            transform: rotate(90deg)
+        }
+
+        details[open] summary i {
+            background: var(--accent);
+            color: var(--accent-fg);
+            transform: rotate(180deg)
+        }
+
+        details[open] summary i::after {
+            transform: rotate(0)
+        }
+
+        details p {
+            padding: 0 52px 24px 0;
+            color: var(--fg-2);
+            max-width: 38rem;
+            animation: dd .5s var(--ease)
+        }
+
+        @keyframes dd {
+            from {
+                opacity: 0;
+                transform: translateY(-8px)
+            }
+        }
+
+        @media (max-width:860px) {
+            .faq-grid {
+                grid-template-columns: minmax(0, 1fr)
+            }
+        }
+
+        .ask {
+            margin-top: 56px;
+            padding: clamp(28px, 5vw, 56px);
+            border-radius: 28px;
+            background: var(--accent);
+            color: var(--accent-fg);
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 28px;
+            align-items: center
+        }
+
+        .ask h3 {
+            font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+            font-weight: 700;
+            letter-spacing: -.03em;
+            line-height: 1.1
+        }
+
+        .ask p {
+            opacity: .85;
+            margin-bottom: 18px
+        }
+
+        .ask .btn,
+        .ask .btn:hover {
+            background: #fff;
+            color: var(--accent);
+            box-shadow: none
+        }
+
+        .ask .btn svg {
+            width: 18px;
+            height: 18px;
+            vertical-align: -3px;
+            margin-left: 8px
+        }
+
+        @media (max-width:860px) {
+            .ask {
+                grid-template-columns: minmax(0, 1fr)
+            }
+        }
+
+        /* Contact (selalu gelap, seperti referensi) */
+        .contact {
+            --fg: #f5f5f7;
+            --bg: #000;
+            --fg-2: #a1a1a6;
+            background: #000;
+            color: var(--fg);
+            text-align: center
+        }
+
+        .contact .big {
+            font-size: clamp(2.6rem, 9vw, 7.5rem);
+            font-weight: 700;
+            letter-spacing: -.045em;
+            line-height: 1;
+            margin: 22px auto 0
+        }
+
+        .big .ln {
+            display: block
+        }
+
+        /* Kata yang berganti (swipe ke atas). Tanpa JS / reduce motion: ketiga kata tampil berurutan. */
+        .rot-w:not(:last-child)::after {
+            content: ", "
+        }
+
+        .js .rot {
+            display: inline-block;
+            vertical-align: top;
+            overflow: hidden;
+            box-sizing: content-box;
+            height: 1em;
+            padding-block: .1em;
+            margin-block: -.1em;
+            transition: width .6s var(--ease)
+        }
+
+        .js .rot-track {
+            display: block;
+            transition: transform .7s var(--ease);
+            will-change: transform
+        }
+
+        .js .rot-w {
+            display: block;
+            width: max-content;
+            height: 1em;
+            line-height: 1
+        }
+
+        .js .rot-w:not(:last-child)::after {
+            content: none
+        }
+
+        .mail {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: clamp(36px, 5vw, 56px);
+            padding: 18px 30px;
+            border: 0;
+            border-radius: 980px;
+            background: var(--fg);
+            color: var(--bg);
+            font: 500 clamp(1.0625rem, 2vw, 1.5rem)/1 var(--font);
+            letter-spacing: -.01em;
+            cursor: pointer;
+            transition: transform .35s var(--ease), box-shadow .35s
+        }
+
+        .mail:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 14px 40px rgba(255, 255, 255, .18)
+        }
+
+        .mail svg {
+            width: 1.1em;
+            height: 1.1em;
+            flex: none;
+            opacity: .55
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: clamp(28px, 5vw, 44px);
+            margin-top: clamp(40px, 6vw, 64px)
+        }
+
+        .social a {
+            color: var(--fg-2);
+            display: block;
+            transition: color .3s, transform .35s var(--ease)
+        }
+
+        .social a:hover {
+            color: #fff;
+            transform: translateY(-4px) scale(1.12)
+        }
+
+        .social svg {
+            width: 30px;
+            height: 30px;
+            display: block
+        }
+
+        .based {
+            margin-top: 32px;
+            color: var(--fg-2);
+            font-size: .9375rem
+        }
+
+        .foot {
+            padding-block: 28px;
+            background: #000;
+            border-top: 1px solid #38383a;
+            color: #a1a1a6;
+            font-size: .75rem
+        }
+
+        .foot-in {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .foot a {
+            color: #a1a1a6
+        }
+
+        .foot a:hover {
+            color: #fff
+        }
+
+        @media (hover:none) {
+
+            .btn:hover,
+            .mail:hover,
+            .fw-item:hover {
+                transform: none;
+                box-shadow: none
+            }
+
+            .chat:hover {
+                translate: none
+            }
+
+            a:hover {
+                text-decoration: none
+            }
+
+            .hr:hover {
+                translate: none;
+                rotate: none;
+                box-shadow: 0 24px 60px rgba(0, 0, 0, .18)
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            * {
+                transition: none !important
+            }
+
+            .mq-t,
+            .badge i,
+            details p {
+                animation: none
+            }
+
+            .lb[open]::backdrop,
+            .lb[open] .lb-stage {
+                animation: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress" aria-hidden="true"></div>
+
+    <header class="nav">
+        <div class="wrap">
+            <a class="brand" href="#top">Deandra Eurike</a>
+            <ul>
+                <li><a href="#work">Work</a></li>
+                <li class="n-xl"><a href="#featured">Featured</a></li>
+                <li class="n-xl"><a href="#results">Results</a></li>
+                <li class="n-lg"><a href="#about">About</a></li>
+                <li class="n-lg"><a href="#services">Services</a></li>
+                <li class="n-xl"><a href="#experience">Experience</a></li>
+                <li class="n-lg"><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <!-- Pastikan file CV ada di folder yang sama dengan index.html -->
+                <li class="n-lg"><a class="pill-sm" href="Deandra%20Eurike%20-%20CV.pdf" download>Download CV</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="top">
+
+        <!-- ================= HERO ================= -->
+        <section class="hero">
+            <div class="wrap hero-grid">
+                <div class="hero-copy">
+                    <p class="badge"><i></i>Available for inquiries</p>
+                    <h1>Short-form, start to finish.</h1>
+                    <p class="sub">hello, I'm <b>Deandra</b>, a video editor and creative content producer based in
+                        <b>Jakarta, Indonesia</b>. I plan, film, and edit short-form videos for brands.
+                    </p>
+                    <a class="chat" href="https://wa.me/6289531520996" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/WhatsApp.svg.webp" alt="" width="44" height="44">
+                        <span><small>Deandra</small><strong>Send me a message</strong></span>
+                    </a>
+                    <p class="proof">
+                        <span><b>101K</b> views</span>
+                        <span><b>1M+</b> Instagram followers on BDGFOLK</span>
+                        <span><b>60</b> short-form videos a month for BAD LAB</span>
+                    </p>
+                </div>
+
+                <div class="hero-reels">
+                    <a class="hr hr-1" href="#work" aria-label="Lihat proyek: Mi Madre, BDGFOLK">
+                        <video src="videos/BDGFOLK.mp4#t=0.1" data-start="0" data-end="4" muted playsinline
+                            preload="metadata" aria-hidden="true" tabindex="-1"></video>
+                        <span class="hr-cap"><small>BDGFOLK</small>Mi Madre</span>
+                    </a>
+                    <a class="hr hr-2" href="#work" aria-label="Lihat proyek: Product video 1, BAD LAB">
+                        <video src="videos/BADLAB_PRODUCT.mp4#t=0.1" data-start="0" data-end="4" muted playsinline
+                            preload="metadata" aria-hidden="true" tabindex="-1"></video>
+                        <span class="hr-cap"><small>BAD LAB</small>Product video 1</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= WORKED WITH ================= -->
+        <!-- Logo: assets/logos/badlab.png, bdgfolk.png, melvar.png. Kalau file belum ada, nama teks tampil otomatis. -->
+        <section class="trust" aria-label="Worked with">
+            <div class="wrap">
+                <p>Worked with</p>
+                <div class="mq">
+                    <div class="mq-t">
+                        <span class="lg"><img src="assets/logos/badlab.png" alt="BAD LAB"
+                                onload="this.parentNode.classList.add('hi')" onerror="this.remove()"><b>BAD
+                                LAB</b></span>
+                        <span class="lg"><img src="assets/logos/bdgfolk.png" alt="BDGFOLK"
+                                onload="this.parentNode.classList.add('hi')"
+                                onerror="this.remove()"><b>BDGFOLK</b></span>
+                        <span class="lg"><img src="assets/logos/melvar.png" alt="PT Melvar Lintasnusa"
+                                onload="this.parentNode.classList.add('hi')" onerror="this.remove()"><b>PT Melvar
+                                Lintasnusa</b></span>
+                        <span class="lg" aria-hidden="true"><img src="assets/logos/badlab.png" alt=""
+                                onload="this.parentNode.classList.add('hi')" onerror="this.remove()"><b>BAD
+                                LAB</b></span>
+                        <span class="lg" aria-hidden="true"><img src="assets/logos/bdgfolk.png" alt=""
+                                onload="this.parentNode.classList.add('hi')"
+                                onerror="this.remove()"><b>BDGFOLK</b></span>
+                        <span class="lg" aria-hidden="true"><img src="assets/logos/melvar.png" alt=""
+                                onload="this.parentNode.classList.add('hi')" onerror="this.remove()"><b>PT Melvar
+                                Lintasnusa</b></span>
+                        <span class="lg" aria-hidden="true"><img src="assets/logos/badlab.png" alt=""
+                                onload="this.parentNode.classList.add('hi')" onerror="this.remove()"><b>BAD
+                                LAB</b></span>
+                        <span class="lg" aria-hidden="true"><img src="assets/logos/bdgfolk.png" alt=""
+                                onload="this.parentNode.classList.add('hi')"
+                                onerror="this.remove()"><b>BDGFOLK</b></span>
+                        <span class="lg" aria-hidden="true"><img src="assets/logos/melvar.png" alt=""
+                                onload="this.parentNode.classList.add('hi')" onerror="this.remove()"><b>PT Melvar
+                                Lintasnusa</b></span>
+                        <span class="lg" aria-hidden="true"><img src="assets/logos/badlab.png" alt=""
+                                onload="this.parentNode.classList.add('hi')" onerror="this.remove()"><b>BAD
+                                LAB</b></span>
+                        <span class="lg" aria-hidden="true"><img src="assets/logos/bdgfolk.png" alt=""
+                                onload="this.parentNode.classList.add('hi')"
+                                onerror="this.remove()"><b>BDGFOLK</b></span>
+                        <span class="lg" aria-hidden="true"><img src="assets/logos/melvar.png" alt=""
+                                onload="this.parentNode.classList.add('hi')" onerror="this.remove()"><b>PT Melvar
+                                Lintasnusa</b></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= LATEST PROJECTS ================= -->
+        <section class="sec alt" id="work">
+            <div class="wrap">
+                <div class="head">
+                    <h2 class="h2">Latest projects</h2>
+                    <p class="lede">Two edits I'm proudest of, then the rest of the reel. Tap any video to open it with
+                        sound.</p>
+                </div>
+
+                <article class="case">
+                    <div class="reel-col">
+                        <div class="reel">
+                            <video src="videos/BDGFOLK.mp4#t=0.1"
+                                aria-label="Mi Madre, a BDGFOLK Instagram Reel with 101K views" muted loop playsinline
+                                preload="metadata"></video>
+                        </div>
+                        <p class="reel-note">Mi Madre · Instagram Reels, Feb 2026</p>
+                    </div>
+                    <div class="case-body">
+                        <p class="cat"><b>BDGFOLK</b> &nbsp;/&nbsp; Food &amp; venue feature</p>
+                        <h3>Mi Madre</h3>
+                        <p class="desc">A venue feature for BDGFOLK, a Bandung food and lifestyle platform with 1M+
+                            Instagram followers. I own a feature like this from location research to the final captions.
+                        </p>
+                        <ul class="chips">
+                            <li>Videography</li>
+                            <li>Editing</li>
+                            <li>Voice-over</li>
+                            <li>Captions</li>
+                        </ul>
+                        <button class="btn lb-trigger" type="button" data-href="videos/BDGFOLK.mp4">View project<svg
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 17 17 7M8 7h9v9" />
+                            </svg></button>
+                        <div class="fw-info" hidden>
+                            <p class="lb-cat"><b>BDGFOLK</b> &nbsp;/&nbsp; Food &amp; venue feature</p>
+                            <h3>Mi Madre</h3>
+                            <p class="lb-desc">A venue feature for BDGFOLK, a Bandung food and lifestyle platform with
+                                1M+ Instagram followers. I own a feature like this from location research to the final
+                                captions.</p>
+                            <ul class="chips">
+                                <li>Videography</li>
+                                <li>Editing</li>
+                                <li>Voice-over</li>
+                                <li>Captions</li>
+                            </ul>
+                            <dl class="lb-meta">
+                                <div>
+                                    <dt>Client</dt>
+                                    <dd>BDGFOLK (Bandung Folk)</dd>
+                                </div>
+                                <div>
+                                    <dt>My role</dt>
+                                    <dd>Videographer &amp; video editor</dd>
+                                </div>
+                                <div>
+                                    <dt>Platform</dt>
+                                    <dd>Instagram Reels</dd>
+                                </div>
+                                <div>
+                                    <dt>Date</dt>
+                                    <dd>Feb 2026</dd>
+                                </div>
+                                <div>
+                                    <dt>Result</dt>
+                                    <dd>101K views</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="case flip">
+                    <div class="reel-col">
+                        <div class="reel">
+                            <video src="videos/BADLAB_PRODUCT.mp4#t=0.1" aria-label="BAD LAB product video 1" muted loop
+                                playsinline preload="metadata"></video>
+                        </div>
+                        <p class="reel-note">Product video 1 · Instagram &amp; TikTok, 2026</p>
+                    </div>
+                    <div class="case-body">
+                        <p class="cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product content</p>
+                        <h3>Product video 1</h3>
+                        <p class="desc">A product video for BAD LAB, a men's grooming and personal care brand.
+                            Hook-first structure, with motion graphics, text animation, voice-over, and subtitles.</p>
+                        <ul class="chips">
+                            <li>Hooks</li>
+                            <li>Motion graphics</li>
+                            <li>Text animation</li>
+                            <li>Subtitles</li>
+                        </ul>
+                        <button class="btn lb-trigger" type="button" data-href="videos/BADLAB_PRODUCT.mp4">View
+                            project<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 17 17 7M8 7h9v9" />
+                            </svg></button>
+                        <div class="fw-info" hidden>
+                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product content</p>
+                            <h3>Product video 1</h3>
+                            <p class="lb-desc">A product video for BAD LAB, a men's grooming and personal care brand.
+                                Hook-first structure, with motion graphics, text animation, voice-over, and subtitles.
+                            </p>
+                            <ul class="chips">
+                                <li>Hooks</li>
+                                <li>Motion graphics</li>
+                                <li>Text animation</li>
+                                <li>Subtitles</li>
+                            </ul>
+                            <dl class="lb-meta">
+                                <div>
+                                    <dt>Client</dt>
+                                    <dd>BAD LAB</dd>
+                                </div>
+                                <div>
+                                    <dt>My role</dt>
+                                    <dd>Video editor &amp; content producer</dd>
+                                </div>
+                                <div>
+                                    <dt>Platform</dt>
+                                    <dd>Instagram &amp; TikTok</dd>
+                                </div>
+                                <div>
+                                    <dt>Date</dt>
+                                    <dd>2026</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== FEATURED WORKS (More from the reel) =====
+         Yang dimuat saat halaman dibuka HANYA thumbnail (gambar kecil, lazy).
+         Video (href) baru diunduh ketika thumbnail diklik.
+         Ganti: href = file video, img src = thumbnail, teks di .fw-cap dan .fw-info = judul & detail. -->
+        <section class="sec alt join" id="featured">
+            <div class="wrap fw">
+                <div class="head">
+                    <h2 class="h2">More from the reel</h2>
+                    <p class="lede">Product, barber, brand, and a podcast edit made for practice.</p>
+                </div>
+                <ul class="fw-grid" data-stagger>
+                    <li>
+                        <a class="fw-item" href="videos/featured-1.mp4" aria-label="Play video: Podcast edit">
+                            <img src="assets/featured/thumb-1.jpg" alt="" width="360" height="640" loading="lazy"
+                                decoding="async">
+                            <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg></span>
+                            <span class="fw-cap"><small>Personal practice</small>Podcast edit</span></a>
+                        <div class="fw-info" hidden>
+                            <p class="lb-cat"><b>Personal practice</b> &nbsp;/&nbsp; Podcast clip</p>
+                            <h3>Podcast edit</h3>
+                            <p class="lb-desc">A podcast clip I edited on my own to practice reaching a wider audience
+                                with
+                                short-form. It was not made for a client. The footage comes from a Billie Eilish podcast
+                                episode by
+                                Apple Music and belongs to its owners.</p>
+                            <ul class="chips">
+                                <li>Editing</li>
+                                <li>Captions</li>
+                            </ul>
+                            <dl class="lb-meta">
+                                <div>
+                                    <dt>Type</dt>
+                                    <dd>Practice edit, no client</dd>
+                                </div>
+                                <div>
+                                    <dt>My role</dt>
+                                    <dd>Edit only</dd>
+                                </div>
+                                <div>
+                                    <dt>Format</dt>
+                                    <dd>Vertical short-form</dd>
+                                </div>
+                                <div>
+                                    <dt>Source</dt>
+                                    <dd><a href="https://youtu.be/VOrQHc99JSU" target="_blank"
+                                            rel="noopener noreferrer">Original podcast on YouTube</a></dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="fw-item" href="videos/featured-2.mp4" aria-label="Play video: Product video 2">
+                            <img src="assets/featured/thumb-2.jpg" alt="" width="360" height="640" loading="lazy"
+                                decoding="async">
+                            <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg></span>
+                            <span class="fw-cap"><small>BAD LAB</small>Product video 2</span></a>
+                        <div class="fw-info" hidden>
+                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product content</p>
+                            <h3>Product video 2</h3>
+                            <p class="lb-desc">Another product video from the 30-a-month product series for BAD LAB.</p>
+                            <ul class="chips">
+                                <li>Editing</li>
+                                <li>Text animation</li>
+                            </ul>
+                            <dl class="lb-meta">
+                                <div>
+                                    <dt>Client</dt>
+                                    <dd>BAD LAB</dd>
+                                </div>
+                                <div>
+                                    <dt>My role</dt>
+                                    <dd>Video editor &amp; content producer</dd>
+                                </div>
+                                <div>
+                                    <dt>Platform</dt>
+                                    <dd>Instagram &amp; TikTok</dd>
+                                </div>
+                                <div>
+                                    <dt>Date</dt>
+                                    <dd>2026</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="fw-item" href="videos/featured-3.mp4" aria-label="Play video: KKV">
+                            <img src="assets/featured/thumb-3.jpg" alt="" width="360" height="640" loading="lazy"
+                                decoding="async">
+                            <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg></span>
+                            <span class="fw-cap"><small>BAD LAB</small>KKV</span></a>
+                        <div class="fw-info" hidden>
+                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Brand content</p>
+                            <h3>KKV</h3>
+                            <p class="lb-desc">A short-form brand video made for BAD LAB.</p>
+                            <ul class="chips">
+                                <li>Editing</li>
+                                <li>Motion graphics</li>
+                            </ul>
+                            <dl class="lb-meta">
+                                <div>
+                                    <dt>Client</dt>
+                                    <dd>BAD LAB</dd>
+                                </div>
+                                <div>
+                                    <dt>My role</dt>
+                                    <dd>Video editor &amp; content producer</dd>
+                                </div>
+                                <div>
+                                    <dt>Platform</dt>
+                                    <dd>Instagram &amp; TikTok</dd>
+                                </div>
+                                <div>
+                                    <dt>Date</dt>
+                                    <dd>2026</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="fw-item" href="videos/featured-4.mp4" aria-label="Play video: Barber 1">
+                            <img src="assets/featured/thumb-4.jpg" alt="" width="360" height="640" loading="lazy"
+                                decoding="async">
+                            <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg></span>
+                            <span class="fw-cap"><small>BAD LAB</small>Barber 1</span></a>
+                        <div class="fw-info" hidden>
+                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Barber &amp; haircut</p>
+                            <h3>Barber 1</h3>
+                            <p class="lb-desc">Barber and haircut content for BAD LAB's second brand account.</p>
+                            <ul class="chips">
+                                <li>Editing</li>
+                                <li>Captions</li>
+                            </ul>
+                            <dl class="lb-meta">
+                                <div>
+                                    <dt>Client</dt>
+                                    <dd>BAD LAB</dd>
+                                </div>
+                                <div>
+                                    <dt>My role</dt>
+                                    <dd>Video editor &amp; content producer</dd>
+                                </div>
+                                <div>
+                                    <dt>Platform</dt>
+                                    <dd>Instagram &amp; TikTok</dd>
+                                </div>
+                                <div>
+                                    <dt>Date</dt>
+                                    <dd>2026</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="fw-item" href="videos/featured-5.mp4" aria-label="Play video: Barber 2">
+                            <img src="assets/featured/thumb-5.jpg" alt="" width="360" height="640" loading="lazy"
+                                decoding="async">
+                            <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg></span>
+                            <span class="fw-cap"><small>BAD LAB</small>Barber 2</span></a>
+                        <div class="fw-info" hidden>
+                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Barber &amp; haircut</p>
+                            <h3>Barber 2</h3>
+                            <p class="lb-desc">Another cut from the barber and haircut series, 30 videos a month.</p>
+                            <ul class="chips">
+                                <li>Editing</li>
+                                <li>Captions</li>
+                            </ul>
+                            <dl class="lb-meta">
+                                <div>
+                                    <dt>Client</dt>
+                                    <dd>BAD LAB</dd>
+                                </div>
+                                <div>
+                                    <dt>My role</dt>
+                                    <dd>Video editor &amp; content producer</dd>
+                                </div>
+                                <div>
+                                    <dt>Platform</dt>
+                                    <dd>Instagram &amp; TikTok</dd>
+                                </div>
+                                <div>
+                                    <dt>Date</dt>
+                                    <dd>2026</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ================= RESULTS ================= -->
+        <section class="sec" id="results">
+            <div class="wrap">
+                <div class="head">
+                    <h2 class="h2">Results</h2>
+                </div>
+                <div class="stats" data-stagger>
+                    <div class="stat">
+                        <div class="n" data-to="101" data-suf="K">101K</div>
+                        <p class="l">Views on the Mi Madre Reel</p>
+                    </div>
+                    <div class="stat">
+                        <div class="n" data-to="1" data-suf="M+">1M+</div>
+                        <p class="l">Instagram followers on BDGFOLK</p>
+                    </div>
+                    <div class="stat">
+                        <div class="n" data-to="60" data-suf="">60</div>
+                        <p class="l">Short-form videos a month for BAD LAB</p>
+                    </div>
+                    <div class="stat">
+                        <div class="n" data-to="3" data-suf="+">3+</div>
+                        <p class="l">Years of editing and filming</p>
+                    </div>
+                    <div class="stat">
+                        <div class="n" data-to="2" data-suf=" brands">2 brands</div>
+                        <p class="l">Produced at the same time, each with its own voice</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SCRUB STATEMENT ================= -->
+        <section class="scrub">
+            <div class="wrap">
+                <p id="scrub">I build short-form videos on three things: a hook that stops the scroll, pacing that keeps
+                    people
+                    watching, and details that carry the story.</p>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="sec alt" id="about">
+            <div class="wrap">
+                <div class="head">
+                    <h2 class="h2">Deandra Eurike</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about">
+                        <p class="big">Video editor and creative content producer with 3+ years in event and branded
+                            social media
+                            content.</p>
+                        <p>I handle the full cycle: concept, scripting, filming, and editing with motion graphics and
+                            text
+                            animation. I'm also a Computer Science student at BINUS University, which shapes how I
+                            organize a workflow
+                            and deliver on time.</p>
+                        <p>Right now I produce content for BDGFOLK and BAD LAB.</p>
+                        <dl class="kv">
+                            <div>
+                                <dt>Languages</dt>
+                                <dd>Indonesian (native), English (upper-intermediate), Japanese and Korean (basic)</dd>
+                            </div>
+                            <div>
+                                <dt>Education</dt>
+                                <dd>Bachelor of Computer Science, BINUS University (expected 2028)</dd>
+                            </div>
+                            <div>
+                                <dt>Availability</dt>
+                                <dd>Immediate. Full-time, freelance, and remote.</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <!-- Ganti dengan foto kamu (disarankan WebP, ±800x1000 px, < 150 KB) -->
+                    <figure class="about-photo">
+                        <img src="assets/IMG_5957 (1).jpg" alt="Portrait of Deandra Eurike" width="800" height="1000"
+                            loading="lazy" decoding="async">
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES ================= -->
+        <section class="sec" id="services">
+            <div class="wrap svc-grid">
+                <div>
+                    <h2 class="h2">Services that shape your story.</h2>
+                    <p class="lede">One person, the whole short-form cycle.</p>
+                </div>
+                <ul class="svc-list">
+                    <li><b>Short-form video editing</b><span>Instagram Reels and TikTok</span></li>
+                    <li><b>Motion graphics &amp; text animation</b><span>After Effects, Premiere Pro, CapCut</span></li>
+                    <li><b>Content ideas &amp; hooks</b><span>Concepts, hooks, pitches</span></li>
+                    <li><b>Voice-over, subtitles &amp; captions</b><span>Scripts and copywriting</span></li>
+                    <li><b>Videography &amp; photography</b><span>On-location filming, events</span></li>
+                    <li><b>Color grading &amp; sound design</b><span>Finishing and audio polish</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ================= TOOLS ================= -->
+        <section class="sec" id="tools">
+            <div class="wrap two">
+                <div>
+                    <h2>Tools</h2>
+                    <dl class="kv">
+                        <div>
+                            <dt>Video</dt>
+                            <dd>Adobe Premiere Pro, CapCut</dd>
+                        </div>
+                        <div>
+                            <dt>Motion</dt>
+                            <dd>Adobe After Effects</dd>
+                        </div>
+                        <div>
+                            <dt>Audio</dt>
+                            <dd>Logic Pro</dd>
+                        </div>
+                        <div>
+                            <dt>Photo</dt>
+                            <dd>Lightroom</dd>
+                        </div>
+                        <div>
+                            <dt>Workflow</dt>
+                            <dd>Notion</dd>
+                        </div>
+                        <div>
+                            <dt>Design</dt>
+                            <dd>Canva</dd>
+                        </div>
+                    </dl>
+                </div>
+                <div>
+                    <h2>My creative toolbox</h2>
+                    <!-- Logo tool memakai file yang ada di folder assets/. Lightroom memakai badge teks (belum ada file logonya). -->
+                    <div class="logos" data-stagger>
+                        <div class="logo"><i><img src="assets/Adobe_Premiere_Pro_CC_icon.svg.webp" alt="" width="64"
+                                    height="64"></i>Premiere Pro</div>
+                        <div class="logo"><i><img src="assets/Adobe_After_Effects_CC_icon.svg.webp" alt="" width="64"
+                                    height="64"></i>After Effects</div>
+                        <div class="logo"><i><img src="assets/Capcut-logo.png" alt="" width="64" height="64"></i>CapCut
+                        </div>
+                        <div class="logo"><i><img src="assets/setup_logic - Diedit.jpg" alt="" width="64"
+                                    height="64"></i>Logic Pro
+                        </div>
+                        <div class="logo"><i><img src="assets/notion-logo.webp" alt="" width="64" height="64"></i>Notion
+                        </div>
+                        <div class="logo"><i><img src="assets/canva-icon-logo.png" alt="" width="64"
+                                    height="64"></i>Canva
+                        </div>
+                        <div class="logo"><i><img src="assets/Adobe_Photoshop_Lightroom_CC_logo.svg.webp" alt=""
+                                    width="64" height="64"></i>Lightroom
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= WORKFLOW ================= -->
+        <section class="sec alt" id="workflow">
+            <div class="wrap">
+                <div class="head">
+                    <h2 class="h2">How a video gets made.</h2>
+                    <p class="lede">The same five steps on every project, whether it's one Reel or sixty videos a month.
+                    </p>
+                </div>
+                <div class="steps" id="steps">
+                    <span class="fill" aria-hidden="true"></span>
+                    <div class="step"><i>1</i>
+                        <div>
+                            <h3>Research &amp; concept</h3>
+                            <p>Venue research, content ideas, and a pitch to the team lead before anything is filmed.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step"><i>2</i>
+                        <div>
+                            <h3>Hook &amp; script</h3>
+                            <p>A hook for the first seconds, plus the voice-over script and copy.</p>
+                        </div>
+                    </div>
+                    <div class="step"><i>3</i>
+                        <div>
+                            <h3>Film</h3>
+                            <p>On-location videography and photography.</p>
+                        </div>
+                    </div>
+                    <div class="step"><i>4</i>
+                        <div>
+                            <h3>Edit</h3>
+                            <p>Short-form edit with motion graphics, text animation, color, and sound design.</p>
+                        </div>
+                    </div>
+                    <div class="step"><i>5</i>
+                        <div>
+                            <h3>Captions &amp; delivery</h3>
+                            <p>Subtitles and captions, then delivery ready for Instagram and TikTok.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FAQ ================= -->
+        <section class="sec" id="faq">
+            <div class="wrap">
+                <div class="faq-grid">
+                    <div>
+                        <h2 class="h2">Your questions answered.</h2>
+                        <p class="lede">Something missing? Send me a message and I'll reply directly.</p>
+                    </div>
+                    <div class="faq-list">
+                        <details open>
+                            <summary>What kind of projects do you take on?<i></i></summary>
+                            <p>Short-form video for brands and events: product videos, venue and food features, barber
+                                and grooming
+                                content, and event coverage. I edit mainly in Premiere Pro, After Effects, and CapCut.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>How involved are you in the process?<i></i></summary>
+                            <p>Fully hands-on. I handle concept, scripting, filming, and the edit with motion graphics
+                                and text
+                                animation, plus voice-over and captions. At BDGFOLK I deliver venue features end to end,
+                                and at BAD LAB
+                                I own the workflow from ideas and hooks to the final edit.</p>
+                        </details>
+                        <details>
+                            <summary>Do you take small projects, or only big ones?<i></i></summary>
+                            <p>Both. I've done 3–5 freelance projects a month since 2023, like birthday videos and Sweet
+                                Seventeen
+                                events, and I currently produce 60 short-form videos a month for BAD LAB's two accounts.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>How long does a project take?<i></i></summary>
+                            <p>It depends on the number of videos and how much filming is involved. Tell me your
+                                deadline and I'll
+                                say honestly what's realistic.</p>
+                        </details>
+                        <details>
+                            <summary>Do you work alone or with a team?<i></i></summary>
+                            <p>I work independently from idea to final file, and I'm comfortable pitching to and working
+                                with a team
+                                lead or creative lead.</p>
+                        </details>
+                        <details>
+                            <summary>Can you match my brand's style?<i></i></summary>
+                            <p>Yes. I produce for two very different brands at once: a men's grooming brand and a food
+                                and lifestyle
+                                media platform, each with its own voice.</p>
+                        </details>
+                        <details>
+                            <summary>Are you available for remote or full-time work?<i></i></summary>
+                            <p>Yes. I'm available immediately for full-time, freelance, and remote work. I'm based in
+                                Jakarta,
+                                Indonesia.</p>
+                        </details>
+                        <details>
+                            <summary>How does pricing work?<i></i></summary>
+                            <p>Pricing is project-based and depends on the number of videos, filming needs, and scope.
+                                Send me a
+                                brief by WhatsApp or email and I'll reply with a quote.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+        <section class="sec contact" id="contact">
+            <div class="wrap" data-stagger>
+                <p class="eyebrow">Contact</p>
+                <h2 class="big" aria-label="Let's create, visualize, build. Together.">
+                    <span class="ln" aria-hidden="true">Let's <span class="rot"><span class="rot-w">create</span><span
+                                class="rot-w">visualize</span><span class="rot-w">build</span></span>.</span>
+                    <span class="ln" aria-hidden="true">Together.</span>
+                </h2>
+                <div>
+                    <button class="mail" id="copyMail" type="button" aria-label="Copy email address">
+                        <span>deaeurike@gmail.com</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="social">
+                    <li><a href="https://www.instagram.com/deaeurike" target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <path d="M17.5 6.5h.01" />
+                            </svg></a></li>
+                    <li><a href="https://www.linkedin.com/in/deandraeurike" target="_blank" rel="noopener noreferrer"
+                            aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg></a></li>
+                    <li><a href="https://wa.me/6289531520996" target="_blank" rel="noopener noreferrer"
+                            aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z" />
+                                <path d="M9 8.5c0 3.5 2.5 6 6 6l1-1.3-1.8-.9-.8.7c-.9-.4-1.6-1.1-2-2l.7-.8-.9-1.8z" />
+                            </svg></a></li>
+                </ul>
+                <p class="based">Based in Jakarta, Indonesia</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="foot">
+        <div class="wrap foot-in"><span>© 2026 Deandra Eurike</span><a href="#top">Back to top</a></div>
+    </footer>
+
+    <!-- Popup video Featured Works (satu elemen <video> dipakai ulang untuk semua video) -->
+    <dialog class="lb" id="lb" aria-label="Project details">
+        <span class="lb-count" aria-live="polite"></span>
+        <button class="lb-btn lb-close" type="button" aria-label="Close video">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+        </button>
+        <button class="lb-btn lb-prev" type="button" aria-label="Previous video">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 5l-7 7 7 7" />
+            </svg>
+        </button>
+        <div class="lb-stage">
+            <div class="lb-frame">
+                <video playsinline loop controls preload="none"></video>
+            </div>
+            <div class="lb-info"></div>
+        </div>
+        <button class="lb-btn lb-next" type="button" aria-label="Next video">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+    </dialog>
+
+    <script>
+        /* ===== Featured Works lightbox: video baru di-load saat diklik ===== */
+        (function () {
+            var d = document, de = d.documentElement, dlg = d.getElementById("lb");
+            /* Tanpa dukungan <dialog>: link tetap berfungsi (video dibuka langsung) */
+            if (!dlg || typeof dlg.showModal !== "function") return;
+
+            var frame = dlg.querySelector(".lb-frame"), vid = frame.querySelector("video"),
+                info = dlg.querySelector(".lb-info"),
+                count = dlg.querySelector(".lb-count"),
+                items = [].slice.call(d.querySelectorAll(".lb-trigger, .fw-item")), cur = 0, sx = 0, sy = 0;
+
+            function load(i) {
+                cur = (i + items.length) % items.length;
+                var a = items[cur], img = a.querySelector("img");
+                var holder = a.classList.contains("fw-item") ? a.parentNode : a.closest("article");
+                var data = holder.querySelector(".fw-info");
+                info.innerHTML = data ? data.innerHTML : "";
+                info.scrollTop = 0;
+                frame.classList.add("loading");
+                vid.poster = img ? (img.currentSrc || img.src) : "";
+                vid.src = a.getAttribute("href") || a.getAttribute("data-href");          /* <- di sinilah video mulai diunduh */
+                vid.muted = false;
+                var p = vid.play();
+                /* Jika browser menolak autoplay bersuara, putar tanpa suara */
+                if (p && p.catch) p.catch(function () { vid.muted = true; vid.play().catch(function () { }); });
+                count.textContent = (cur + 1) + " / " + items.length;
+            }
+
+            function open(i) {
+                de.classList.add("lb-open");
+                dlg.showModal();
+                load(i);
+            }
+
+            items.forEach(function (a, i) {
+                a.addEventListener("click", function (e) {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return; /* biarkan buka di tab baru */
+                    e.preventDefault();
+                    open(i);
+                });
+            });
+
+            /* Saat ditutup: hentikan & lepas video supaya unduhan berhenti dan memori bebas */
+            dlg.addEventListener("close", function () {
+                vid.pause();
+                vid.removeAttribute("src");
+                vid.load();
+                frame.classList.remove("loading");
+                de.classList.remove("lb-open");
+            });
+
+            dlg.querySelector(".lb-close").addEventListener("click", function () { dlg.close(); });
+            dlg.querySelector(".lb-prev").addEventListener("click", function () { load(cur - 1); });
+            dlg.querySelector(".lb-next").addEventListener("click", function () { load(cur + 1); });
+
+            /* Klik area gelap di luar video = tutup */
+            dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target === dlg.querySelector(".lb-stage")) dlg.close(); });
+
+            /* Keyboard: Esc (bawaan dialog), panah kiri/kanan */
+            dlg.addEventListener("keydown", function (e) {
+                if (e.key === "ArrowRight") { e.preventDefault(); load(cur + 1); }
+                else if (e.key === "ArrowLeft") { e.preventDefault(); load(cur - 1); }
+            });
+
+            /* Swipe kiri/kanan di HP */
+            frame.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+            frame.addEventListener("touchend", function (e) {
+                var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+                if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) load(cur + (dx < 0 ? 1 : -1));
+            }, { passive: true });
+
+            /* Indikator loading */
+            vid.addEventListener("waiting", function () { frame.classList.add("loading"); });
+            ["playing", "canplay", "error", "pause"].forEach(function (ev) {
+                vid.addEventListener(ev, function () { frame.classList.remove("loading"); });
+            });
+        })();
+    </script>
+    <script>
+        /* Preview video hero: potongan pendek yang diulang, tanpa suara */
+        (function () {
+            var vs = document.querySelectorAll(".hr video");
+            if (!vs.length) return;
+            if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+            vs.forEach(function (v) {
+                var start = parseFloat(v.dataset.start) || 0;
+                var end = parseFloat(v.dataset.end) || 4;
+                var raf = 0;
+
+                function tick() {
+                    if (v.currentTime >= end || v.ended) v.currentTime = start;
+                    raf = requestAnimationFrame(tick);
+                }
+                function play() {
+                    if (v.currentTime < start || v.currentTime >= end) v.currentTime = start;
+                    var p = v.play();
+                    if (p && p.catch) p.catch(function () { });
+                }
+                v.addEventListener("play", function () { cancelAnimationFrame(raf); tick(); });
+                v.addEventListener("pause", function () { cancelAnimationFrame(raf); });
+
+                if (!("IntersectionObserver" in window)) { play(); return; }
+                new IntersectionObserver(function (es) {
+                    es.forEach(function (e) { e.isIntersecting ? play() : v.pause(); });
+                }, { threshold: 0.25 }).observe(v);
+            });
+        })();
+    </script>
+</body>
+
+<script>
+    (function () {
+        var d = document, de = d.documentElement;
+        var bar = d.querySelector(".progress"), nav = d.querySelector(".nav");
+
+        /* Progress bar + bayangan nav saat scroll */
+        function onScroll() {
+            var m = de.scrollHeight - de.clientHeight;
+            bar.style.transform = "scaleX(" + (m > 0 ? de.scrollTop / m : 0) + ")";
+            nav.classList.toggle("sc", de.scrollTop > 8);
+        }
+        addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+        /* Salin email */
+        var mb = d.getElementById("copyMail"), lbl = mb.querySelector("span"), orig = lbl.textContent;
+        mb.addEventListener("click", function () {
+            function ok() { lbl.textContent = "Copied!"; setTimeout(function () { lbl.textContent = orig; }, 1600); }
+            function fallback() { location.href = "mailto:" + orig; }
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(orig).then(ok, fallback);
+            else fallback();
+        });
+
+        /* Video reel: autoplay saat terlihat + kontrol seek/waktu/play/suara */
+        var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var vids = d.querySelectorAll(".reel video");
+        var IC = {
+            play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+            pause: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>',
+            vol: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>',
+            mute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z" fill="currentColor"/><path d="M22 9l-6 6M16 9l6 6"/></svg>'
+        };
+        function fmt(s) {
+            if (!isFinite(s)) return "0:00";
+            var m = Math.floor(s / 60), x = Math.floor(s % 60);
+            return m + ":" + (x < 10 ? "0" : "") + x;
+        }
+        vids.forEach(function (v) {
+            var bar = d.createElement("div");
+            bar.className = "rc";
+            bar.innerHTML =
+                '<button type="button" class="rc-play"></button>' +
+                '<input class="rc-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video">' +
+                '<span class="rc-time">0:00 / 0:00</span>' +
+                '<button type="button" class="rc-mute"></button>';
+            v.parentNode.appendChild(bar);
+
+            var pb = bar.querySelector(".rc-play"), sk = bar.querySelector(".rc-seek"),
+                tm = bar.querySelector(".rc-time"), mb = bar.querySelector(".rc-mute"),
+                reel = v.parentNode, scrub = false, hideT;
+
+            /* Tampilkan bar; kalau video sedang main, sembunyikan lagi setelah beberapa detik */
+            function show(keep) {
+                bar.classList.add("show");
+                clearTimeout(hideT);
+                if (!keep && !v.paused && !scrub) {
+                    hideT = setTimeout(function () { bar.classList.remove("show"); }, 1500);
+                }
+            }
+
+            function icons() {
+                pb.innerHTML = v.paused ? IC.play : IC.pause;
+                pb.setAttribute("aria-label", v.paused ? "Play" : "Pause");
+                mb.innerHTML = v.muted ? IC.mute : IC.vol;
+                mb.setAttribute("aria-label", v.muted ? "Unmute" : "Mute");
+            }
+            function upd() {
+                if (!scrub && v.duration) sk.value = (v.currentTime / v.duration) * 1000;
+                tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration);
+            }
+            function toggle() {
+                if (v.paused) { v.dataset.manual = ""; v.play().catch(function () { }); }
+                else { v.dataset.manual = "1"; v.pause(); }
+            }
+
+            ["timeupdate", "loadedmetadata", "durationchange"].forEach(function (e) { v.addEventListener(e, upd); });
+            ["play", "pause", "volumechange"].forEach(function (e) { v.addEventListener(e, icons); });
+            v.addEventListener("play", function () { show(); });
+            v.addEventListener("pause", function () { show(true); });
+
+            sk.addEventListener("input", function () {
+                scrub = true;
+                show(true);
+                if (v.duration) v.currentTime = (sk.value / 1000) * v.duration;
+                tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration);
+            });
+            sk.addEventListener("change", function () { scrub = false; show(); });
+
+            pb.addEventListener("click", function () { toggle(); show(); });
+            mb.addEventListener("click", function () { v.muted = !v.muted; show(); });
+
+            /* Klik video: kalau bar tersembunyi, munculkan dulu. Kalau sudah tampil, play/pause. */
+            v.addEventListener("click", function () {
+                if (!bar.classList.contains("show")) { show(); return; }
+                toggle();
+            });
+
+            /* Mouse di atas video memunculkan bar (sentuhan tidak dihitung) */
+            reel.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") show(); });
+            reel.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") show(); });
+
+            /* Navigasi keyboard */
+            bar.addEventListener("focusin", function () { show(true); });
+            bar.addEventListener("focusout", function () { show(); });
+
+            icons(); upd(); show(true);
+        });
+        if (reduce || !("IntersectionObserver" in window)) return;
+        var vio = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+                var v = e.target;
+                if (e.isIntersecting) {
+                    if (v.dataset.manual !== "1") { var p = v.play(); if (p && p.catch) p.catch(function () { }); }
+                } else v.pause();
+            });
+        }, { threshold: 0.5 });
+        vids.forEach(function (v) { vio.observe(v); });
+        /* Judul hero: pecah per kata */
+        var hero = d.querySelector(".hero"), h1 = hero.querySelector("h1"), txt = h1.textContent.trim();
+        h1.setAttribute("aria-label", txt);
+        h1.innerHTML = txt.split(/\s+/).map(function (w, i) {
+            return '<span class="w" aria-hidden="true"><span class="wi" style="--i:' + i + '">' + w + "</span></span>";
+        }).join(" ");
+        requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add("go"); }); });
+
+        /* Scroll reveal dengan jeda bertahap */
+        d.querySelectorAll("[data-stagger]").forEach(function (p) {
+            [].forEach.call(p.children, function (c, i) { c.classList.add("rv"); c.style.setProperty("--d", i * 90 + "ms"); });
+        });
+        d.querySelectorAll(".head,.case,.about,.about-photo,.exp,.two>div,.svc-grid>div,.svc-list,.faq-grid>div,.ask,.hero .badge,.hero .sub,.hero .cta,.hero .chat,.hero .proof").forEach(function (e) { e.classList.add("rv"); });
+
+        function run(n) {
+            var to = +n.dataset.to, s = n.dataset.suf || "", t0 = null;
+            function f(t) {
+                if (!t0) t0 = t;
+                var p = Math.min((t - t0) / 1200, 1);
+                n.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + s;
+                if (p < 1) requestAnimationFrame(f);
+            }
+            requestAnimationFrame(f);
+        }
+        var io = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                e.target.classList.add("in");
+                e.target.querySelectorAll("[data-to]").forEach(run);
+                io.unobserve(e.target);
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
+        d.querySelectorAll(".rv").forEach(function (e) { io.observe(e); });
+
+        /* Menu aktif sesuai section */
+        var links = {};
+        d.querySelectorAll('.nav a[href^="#"]').forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+        var sio = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                Object.keys(links).forEach(function (k) { links[k].classList.remove("on"); });
+                var a = links[e.target.id]; if (a && !a.classList.contains("pill-sm")) a.classList.add("on");
+            });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        d.querySelectorAll("main section[id]").forEach(function (s) { sio.observe(s); });
+    })();
+</script>
+
+<script>
+    /* Pernyataan yang menyala kata per kata + garis workflow yang terisi saat di-scroll */
+    (function () {
+        var d = document, de = d.documentElement, sc = d.getElementById("scrub"), steps = d.getElementById("steps");
+        if (!sc || !steps) return;
+        sc.innerHTML = sc.textContent.trim().split(/\s+/).map(function (w) { return '<span class="sw">' + w + "</span>"; }).join(" ");
+        if (!de.classList.contains("js")) return; /* tanpa animasi: semua teks langsung tampil penuh */
+
+        var sws = [].slice.call(sc.querySelectorAll(".sw")), stepEls = [].slice.call(steps.querySelectorAll(".step")), tk = false;
+        function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+        function frame() {
+            tk = false;
+            var H = innerHeight;
+            var r = sc.getBoundingClientRect();
+            var sp = clamp((H * .82 - r.top) / (r.height + H * .35), 0, 1);
+            var lit = Math.round(sp * sws.length * 1.05);
+            sws.forEach(function (s, i) { s.classList.toggle("on", i < lit); });
+
+            var sr = steps.getBoundingClientRect();
+            var pp = clamp((H * .62 - sr.top) / sr.height, 0, 1);
+            steps.style.setProperty("--p", pp);
+            stepEls.forEach(function (s, i) { s.classList.toggle("on", pp >= i / (stepEls.length - 1) - .06); });
+        }
+        function req() { if (!tk) { tk = true; requestAnimationFrame(frame); } }
+        addEventListener("scroll", req, { passive: true });
+        addEventListener("resize", req);
+        frame();
+    })();
+</script>
+
+<script>
+    /* Kata di judul Contact berganti dengan animasi swipe ke atas: create -> visualize -> build */
+    (function () {
+        var rot = document.querySelector(".rot");
+        if (!rot || !document.documentElement.classList.contains("js")) return;
+        var words = [].slice.call(rot.children), n = words.length, i = 0, timer = null;
+        var track = document.createElement("span");
+        track.className = "rot-track";
+        words.forEach(function (w) { track.appendChild(w); });
+        var clone = words[0].cloneNode(true);       /* kata pertama diulang di akhir supaya putarannya mulus */
+        clone.setAttribute("aria-hidden", "true");
+        track.appendChild(clone);
+        rot.appendChild(track);
+
+        function fit() { rot.style.width = track.children[i].offsetWidth + "px"; }
+        function snap() {
+            track.style.transition = "none"; i = 0;
+            track.style.transform = "translateY(0)";
+            void track.offsetHeight;
+            track.style.transition = "";
+        }
+        function go() {
+            if (i >= n) snap();
+            i++;
+            track.style.transform = "translateY(-" + i + "em)";
+            fit();
+        }
+        track.addEventListener("transitionend", function (e) {
+            if (e.target === track && e.propertyName === "transform" && i >= n) snap();
+        });
+        function start() { if (!timer) timer = setInterval(go, 2200); }
+        function stop() { clearInterval(timer); timer = null; }
+
+        fit();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+        addEventListener("resize", fit);
+        if ("IntersectionObserver" in window) {
+            new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }).observe(rot);
+        } else start();
+    })();
+</script>
+</body>
+
+</html>
