@@ -1438,17 +1438,21 @@
             margin-top: 20px
         }
 
+        /* Foto About: <figure> membungkus .frame (foto) + <figcaption> (teks kecil di bawah foto) */
         .about-photo {
             margin: 0;
             width: 100%;
             max-width: 420px;
             justify-self: start;
+            --d: .15s
+        }
+
+        .about-photo .frame {
             aspect-ratio: 4/5;
             border-radius: 28px;
             overflow: hidden;
             background: var(--ph);
-            border: 1px solid var(--line);
-            --d: .15s
+            border: 1px solid var(--line)
         }
 
         .about-photo img {
@@ -1456,6 +1460,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover
+        }
+
+        .about-photo figcaption {
+            margin-top: 10px;
+            font-size: .8125rem;
+            color: var(--fg-2)
         }
 
         @media (max-width:760px) {
@@ -1477,10 +1487,9 @@
             align-items: start
         }
 
-        /* Logo tools di kiri bawah judul Services */
-        /* Satu baris sejajar; nama tool disembunyikan secara visual (tetap ada di title/aria-label) */
         /* Logo tools di kiri bawah judul Services: satu baris lurus, ukuran kecil.
-   Selektor .logos.svc-tools dipakai supaya menang atas .logos (display:grid) yang ada di bawah. */
+           Nama tool disembunyikan secara visual (font-size: 0) dan baru muncul sebagai tooltip saat di-hover.
+           Selektor .logos.svc-tools dipakai supaya menang atas .logos (display:grid) yang ada di bawah. */
         .logos.svc-tools {
             display: flex;
             flex-wrap: nowrap;
@@ -1492,13 +1501,14 @@
         }
 
         .svc-tools .logo {
+            position: relative;
             flex: 0 1 34px;
             /* ukuran maksimal 34px, boleh mengecil di layar sempit */
             min-width: 0;
             gap: 0;
             /* hapus jarak ke teks nama yang disembunyikan */
             font-size: 0
-                /* nama tool disembunyikan (tetap ada di title/aria-label) */
+                /* nama tool disembunyikan (nama muncul lewat tooltip) */
         }
 
         .svc-tools .logo i {
@@ -1511,6 +1521,33 @@
 
         .svc-tools .logo:hover i {
             transform: translateY(-3px) scale(1.08)
+        }
+
+        /* Tooltip nama tool (diambil dari atribut data-name) */
+        .svc-tools .logo::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translate(-50%, 4px);
+            padding: 4px 9px;
+            border-radius: 6px;
+            background: var(--fg);
+            color: var(--bg);
+            font-size: .75rem;
+            font-weight: 500;
+            line-height: 1.2;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            transition: opacity .2s, transform .25s var(--ease)
+        }
+
+        .svc-tools .logo:hover::after,
+        .svc-tools .logo:focus-visible::after {
+            opacity: 1;
+            transform: translate(-50%, 0)
         }
 
 
@@ -2105,7 +2142,8 @@
                 <li class="n-xl"><a href="#experience">Experience</a></li>
                 <li class="n-lg"><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <!-- Pastikan file CV ada di folder yang sama dengan index.html -->
+                <!-- Pastikan file CV ada di folder yang sama dengan index.html
+                     dan namanya persis: "Deandra Eurike - CV.pdf" (%20 = spasi, huruf besar/kecil harus sama) -->
                 <li class="n-lg"><a class="pill-sm" href="Deandra%20Eurike%20-%20CV.pdf" download>Download CV</a></li>
             </ul>
         </div>
@@ -2196,9 +2234,8 @@
         <section class="sec alt" id="work">
             <div class="wrap">
                 <div class="head">
-                    <h2 class="h2">Latest projects</h2>
-                    <p class="lede">Two edits I'm proudest of, then the rest of the reel. Tap any video to open it with
-                        sound.</p>
+                    <h2 class="h2">My Latest projects</h2>
+                    <p class="lede">Where creativity meets visual storytelling.</p>
                 </div>
 
                 <!-- ---------- CASE 1: Mi Madre ---------- -->
@@ -2216,7 +2253,7 @@
                         <h3>Mi Madre</h3>
                         <p class="desc">A venue feature for a Bandung food and lifestyle platform with 1M+ Instagram
                             followers. I handled it end to end, from location research and pitching to filming,
-                            editing, voice-over, and captions.</p>
+                            editing, and captions.</p>
                         <ul class="chips">
                             <li>Concept</li>
                             <li>Videography</li>
@@ -2285,7 +2322,7 @@
                     <div class="case-body">
                         <p class="cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product Video</p>
                         <h3>Get Ready With Me</h3>
-                        <p class="desc">A short-form product video for a men’s grooming brand. I wrote the hook and
+                        <p class="desc">A short-form product video for a men’s grooming brand. I wrote the script and
                             edited it with motion graphics and text animation.</p>
                         <ul class="chips">
                             <li>Concept</li>
@@ -2348,8 +2385,9 @@
         <section class="sec alt join" id="featured">
             <div class="wrap fw">
                 <div class="head">
-                    <h2 class="h2">More from the reel</h2>
-                    <p class="lede">Product videos, a KKV collaboration, barber content, and a podcast edit.</p>
+                    <h2 class="h2">More projects</h2>
+                    <p class="lede">Product content, a brand collaboration, barber videos, and a personal podcast edit.
+                    </p>
                 </div>
                 <ul class="fw-grid" data-stagger>
 
@@ -2361,7 +2399,7 @@
                             <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg></span>
-                            <span class="fw-cap"><small>Personal Account</small>Podcast Apple Music</span></a>
+                            <span class="fw-cap"><small>Personal Account</small>Podcast Edit</span></a>
                         <div class="fw-info" hidden>
                             <p class="lb-cat"><b>Personal Account</b> &nbsp;/&nbsp; Social Media Edit</p>
                             <h3>Podcast Apple Music</h3>
@@ -2445,7 +2483,7 @@
                             <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg></span>
-                            <span class="fw-cap"><small>BAD LAB × KKV</small>KKV × BAD LAB</span></a>
+                            <span class="fw-cap"><small>BAD LAB</small>KKV collaboration</span></a>
                         <div class="fw-info" hidden>
                             <p class="lb-cat"><b>BAD LAB × KKV</b> &nbsp;/&nbsp; Product Video</p>
                             <h3>KKV × BAD LAB</h3>
@@ -2454,6 +2492,7 @@
                                 edited it with motion graphics and text animation.</p>
                             <ul class="chips">
                                 <li>Concept</li>
+                                <li>Videography</li>
                                 <li>Editing</li>
                                 <li>Motion Graphics</li>
                                 <li>Color Grading</li>
@@ -2611,32 +2650,39 @@
         <section class="sec alt" id="about">
             <div class="wrap">
                 <div class="head">
-                    <h2 class="h2">Deandra Eurike</h2>
+                    <h2 class="h2">About Me</h2>
                 </div>
                 <div class="about-grid">
-                    <!-- Foto di kiri, teks di kanan (teks tetap rata kiri). Disarankan WebP, ±800x1000 px, < 150 KB -->
+                    <!-- Foto di kiri (dengan teks kecil di bawahnya), teks di kanan (tetap rata kiri).
+                         Disarankan WebP/JPG, ±800x1000 px, < 150 KB -->
                     <figure class="about-photo">
-                        <img src="assets/dea.jpg" alt="Portrait of Deandra Eurike" width="800" height="1000"
-                            loading="lazy" decoding="async">
+                        <div class="frame">
+                            <img src="assets/dea.jpg" alt="Portrait of Deandra Eurike" width="800" height="1000"
+                                loading="lazy" decoding="async">
+                        </div>
+                        <figcaption>Deandra Eurike</figcaption>
                     </figure>
+
+
                     <div class="about">
-                        <h3>Some moments pass without being captured. I know what it feels like to wish they
-                            had been.</h3>
+                        <h4>Some moments pass without being captured. I know what it feels like to wish they
+                            had been.</h4>
 
                         <p style="font-size: 17px;">I started filming and editing to give moments a way to live beyond
                             the present. Over time, I
                             learned to see stories in the details, shape them through editing, and turn simple ideas
                             into something worth watching. From concept to final cut, I bring together visual
                             storytelling, pacing, sound, and a clear creative direction.</p>
-                        <h3>Every frame is a choice about what deserves to be remembered.</h3>
+
+                        <h4>Every frame is a choice about what deserves to be remembered.</h4>
+
                         <p style="font-size: 17px;">I believe good videos do more than show what happened. They capture
                             a feeling, hold
                             attention, and give people a reason to stay.</p>
-                        <h3>The smallest details make the difference.</h3>
-                        <p style="font-size: 17px;">Every cut, transition, and sound should serve the story. If it
-                            doesn't add meaning, it
-                            doesn't belong.
-                            </h2>
+
+                        <h4>The smallest details make the difference.</h4>
+
+
                     </div>
                 </div>
             </div>
@@ -2650,22 +2696,25 @@
                     <h2 class="h2">Services that shape your story.</h2>
                     <p class="lede">One person, the whole short-form cycle.</p>
 
-                    <!-- Nama file logo diambil apa adanya dari folder assets/ -->
+                    <!-- Nama file logo diambil apa adanya dari folder assets/.
+                         Nama tool muncul sebagai tooltip saat di-hover (dari atribut data-name). -->
                     <div class="logos svc-tools">
-                        <div class="logo" title="Premiere Pro"><i><img src="assets/Adobe_Premiere_Pro_CC_icon.svg.webp"
-                                    alt="Premiere Pro" width="64" height="64"></i>Premiere Pro</div>
-                        <div class="logo" title="After Effects"><i><img
+                        <div class="logo" data-name="Premiere Pro" tabindex="0"><i><img
+                                    src="assets/Adobe_Premiere_Pro_CC_icon.svg.webp" alt="Premiere Pro" width="64"
+                                    height="64"></i>Premiere Pro</div>
+                        <div class="logo" data-name="After Effects" tabindex="0"><i><img
                                     src="assets/Adobe_After_Effects_CC_icon.svg.webp" alt="After Effects" width="64"
                                     height="64"></i>After Effects</div>
-                        <div class="logo" title="CapCut"><i><img src="assets/Capcut-logo.png" alt="CapCut" width="64"
-                                    height="64"></i>CapCut</div>
-                        <div class="logo" title="Logic Pro"><i><img src="assets/setup_logic - Diedit.jpg"
-                                    alt="Logic Pro" width="64" height="64"></i>Logic Pro</div>
-                        <div class="logo" title="Notion"><i><img src="assets/notion-logo.webp" alt="Notion" width="64"
-                                    height="64"></i>Notion</div>
-                        <div class="logo" title="Canva"><i><img src="assets/canva-icon-logo.png" alt="Canva" width="64"
-                                    height="64"></i>Canva</div>
-                        <div class="logo" title="Lightroom"><i><img
+                        <div class="logo" data-name="CapCut" tabindex="0"><i><img src="assets/Capcut-logo.png"
+                                    alt="CapCut" width="64" height="64"></i>CapCut</div>
+                        <div class="logo" data-name="Logic Pro" tabindex="0"><i><img
+                                    src="assets/setup_logic - Diedit.jpg" alt="Logic Pro" width="64"
+                                    height="64"></i>Logic Pro</div>
+                        <div class="logo" data-name="Notion" tabindex="0"><i><img src="assets/notion-logo.webp"
+                                    alt="Notion" width="64" height="64"></i>Notion</div>
+                        <div class="logo" data-name="Canva" tabindex="0"><i><img src="assets/canva-icon-logo.png"
+                                    alt="Canva" width="64" height="64"></i>Canva</div>
+                        <div class="logo" data-name="Lightroom" tabindex="0"><i><img
                                     src="assets/Adobe_Photoshop_Lightroom_CC_logo.svg.webp" alt="Lightroom" width="64"
                                     height="64"></i>Lightroom</div>
                     </div>
