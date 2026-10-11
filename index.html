@@ -678,25 +678,28 @@
             }
         }
 
+        /* Logo "Worked with": kotak berukuran tetap supaya semua logo tampil sama besar */
         .lg {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding-inline: 38px;
-            height: 44px;
+            flex: none;
+            width: 130px;
+            height: 32px;
+            padding-inline: 0;
             white-space: nowrap
         }
 
         .lg b {
-            font-size: 1.4rem;
+            font-size: 1rem;
             font-weight: 800;
             letter-spacing: -.03em
         }
 
         .lg img {
-            height: 36px;
-            width: auto;
+            width: 88px;
+            height: 26px;
+            object-fit: contain;
             filter: grayscale(1);
             opacity: .8
         }
@@ -715,6 +718,15 @@
             .mq {
                 width: 100%;
                 flex: none
+            }
+
+            .lg {
+                width: 110px
+            }
+
+            .lg img {
+                width: 76px;
+                height: 22px
             }
         }
 
@@ -1389,13 +1401,14 @@
         /* About */
         .about-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
             gap: clamp(32px, 6vw, 80px);
             align-items: center
         }
 
         .about {
-            max-width: 46rem
+            max-width: 46rem;
+            text-align: left
         }
 
         .about .big {
@@ -1413,19 +1426,23 @@
             line-height: 1.5
         }
 
-        .about .kv {
-            margin-top: 32px
+        /* Kalimat penekanan di antara paragraf */
+        .about p+p.big {
+            margin-top: 32px;
+            color: var(--fg);
+            font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+            line-height: 1.25
         }
 
-        .about .kv>div {
-            grid-template-columns: 120px minmax(0, 1fr)
+        .about p.big+p {
+            margin-top: 20px
         }
 
         .about-photo {
             margin: 0;
             width: 100%;
             max-width: 420px;
-            justify-self: end;
+            justify-self: start;
             aspect-ratio: 4/5;
             border-radius: 28px;
             overflow: hidden;
@@ -1447,7 +1464,6 @@
             }
 
             .about-photo {
-                order: -1;
                 max-width: 340px;
                 justify-self: start
             }
@@ -1457,7 +1473,53 @@
         .svc-grid {
             display: grid;
             grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-            gap: clamp(30px, 6vw, 90px)
+            gap: clamp(30px, 6vw, 90px);
+            align-items: start
+        }
+
+        /* Logo tools di kiri bawah judul Services */
+        /* Satu baris sejajar; nama tool disembunyikan secara visual (tetap ada di title/aria-label) */
+        /* Logo tools di kiri bawah judul Services: satu baris lurus, ukuran kecil.
+   Selektor .logos.svc-tools dipakai supaya menang atas .logos (display:grid) yang ada di bawah. */
+        .logos.svc-tools {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: flex-start;
+            gap: clamp(8px, 1.4vw, 14px);
+            margin-top: 32px;
+            max-width: 420px
+        }
+
+        .svc-tools .logo {
+            flex: 0 1 34px;
+            /* ukuran maksimal 34px, boleh mengecil di layar sempit */
+            min-width: 0;
+            gap: 0;
+            /* hapus jarak ke teks nama yang disembunyikan */
+            font-size: 0
+                /* nama tool disembunyikan (tetap ada di title/aria-label) */
+        }
+
+        .svc-tools .logo i {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, .14)
+        }
+
+        .svc-tools .logo:hover i {
+            transform: translateY(-3px) scale(1.08)
+        }
+
+
+        /* Angka Results: satuan lebih kecil di samping angka */
+        .stat .n .u {
+            font-size: .6em;
+            font-weight: 600;
+            letter-spacing: -.02em;
+            color: var(--fg-2)
         }
 
         .svc-list li {
@@ -1559,26 +1621,7 @@
             }
         }
 
-        /* Tools + logo aplikasi */
-        .two {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 56px 48px
-        }
-
-        @media (max-width:760px) {
-            .two {
-                grid-template-columns: minmax(0, 1fr)
-            }
-        }
-
-        .two h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            letter-spacing: -.025em;
-            margin-bottom: 20px
-        }
-
+        /* Daftar key-value (dipakai di About) */
         .kv>div {
             display: grid;
             grid-template-columns: 110px minmax(0, 1fr);
@@ -1604,6 +1647,7 @@
             min-width: 0
         }
 
+        /* Logo aplikasi */
         .logos {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
@@ -1632,6 +1676,12 @@
             letter-spacing: -.04em;
             box-shadow: 0 8px 20px rgba(0, 0, 0, .14);
             transition: transform .45s var(--ease), box-shadow .45s var(--ease)
+        }
+
+        .logo i img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
         }
 
         .logo:hover i {
@@ -2068,7 +2118,7 @@
             <div class="wrap hero-grid">
                 <div class="hero-copy">
                     <p class="badge"><i></i>Available for inquiries</p>
-                    <h1>Short-form, start to finish.</h1>
+                    <h1 style="font-size: 70px;"> Short-form, start to finish.</h1>
                     <p class="sub">hello, I'm <b>Deandra</b>, a video editor and creative content producer based in
                         <b>Jakarta, Indonesia</b>. I plan, film, and edit short-form videos for brands.
                     </p>
@@ -2076,11 +2126,6 @@
                         <img src="assets/WhatsApp.svg.webp" alt="" width="44" height="44">
                         <span><small>Deandra</small><strong>Send me a message</strong></span>
                     </a>
-                    <p class="proof">
-                        <span><b>101K</b> views</span>
-                        <span><b>1M+</b> Instagram followers on BDGFOLK</span>
-                        <span><b>60</b> short-form videos a month for BAD LAB</span>
-                    </p>
                 </div>
 
                 <div class="hero-reels">
@@ -2089,17 +2134,18 @@
                             preload="metadata" aria-hidden="true" tabindex="-1"></video>
                         <span class="hr-cap"><small>BDGFOLK</small>Mi Madre</span>
                     </a>
-                    <a class="hr hr-2" href="#work" aria-label="Lihat proyek: Product video 1, BAD LAB">
+                    <a class="hr hr-2" href="#work" aria-label="Lihat proyek: Get Ready With Me, BAD LAB">
                         <video src="videos/BADLAB_PRODUCT.mp4#t=0.1" data-start="0" data-end="4" muted playsinline
                             preload="metadata" aria-hidden="true" tabindex="-1"></video>
-                        <span class="hr-cap"><small>BAD LAB</small>Product video 1</span>
+                        <span class="hr-cap"><small>BAD LAB</small>Get Ready With Me</span>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- ================= WORKED WITH ================= -->
-        <!-- Logo: assets/logos/badlab.png, bdgfolk.png, melvar.png. Kalau file belum ada, nama teks tampil otomatis. -->
+        <!-- Logo: assets/logos/badlab.png, bdgfolk.png, melvar.png. Kalau file belum ada, nama teks tampil otomatis.
+             Ukuran semua logo disamakan lewat CSS (.lg img = kotak 130x40, object-fit: contain). -->
         <section class="trust" aria-label="Worked with">
             <div class="wrap">
                 <p>Worked with</p>
@@ -2155,6 +2201,7 @@
                         sound.</p>
                 </div>
 
+                <!-- ---------- CASE 1: Mi Madre ---------- -->
                 <article class="case">
                     <div class="reel-col">
                         <div class="reel">
@@ -2165,15 +2212,18 @@
                         <p class="reel-note">Mi Madre · Instagram Reels, Feb 2026</p>
                     </div>
                     <div class="case-body">
-                        <p class="cat"><b>BDGFOLK</b> &nbsp;/&nbsp; Food &amp; venue feature</p>
+                        <p class="cat"><b>BDGFOLK</b> &nbsp;/&nbsp; Food &amp; Venue Feature</p>
                         <h3>Mi Madre</h3>
-                        <p class="desc">A venue feature for BDGFOLK, a Bandung food and lifestyle platform with 1M+
-                            Instagram followers. I own a feature like this from location research to the final captions.
-                        </p>
+                        <p class="desc">A venue feature for a Bandung food and lifestyle platform with 1M+ Instagram
+                            followers. I handled it end to end, from location research and pitching to filming,
+                            editing, voice-over, and captions.</p>
                         <ul class="chips">
+                            <li>Concept</li>
                             <li>Videography</li>
                             <li>Editing</li>
-                            <li>Voice-over</li>
+                            <li>Color Grading</li>
+                            <li>Transitions &amp; Effects</li>
+                            <li>Sound Design</li>
                             <li>Captions</li>
                         </ul>
                         <button class="btn lb-trigger" type="button" data-href="videos/BDGFOLK.mp4">View project<svg
@@ -2182,15 +2232,18 @@
                                 <path d="M7 17 17 7M8 7h9v9" />
                             </svg></button>
                         <div class="fw-info" hidden>
-                            <p class="lb-cat"><b>BDGFOLK</b> &nbsp;/&nbsp; Food &amp; venue feature</p>
+                            <p class="lb-cat"><b>BDGFOLK</b> &nbsp;/&nbsp; Food &amp; Venue Feature</p>
                             <h3>Mi Madre</h3>
-                            <p class="lb-desc">A venue feature for BDGFOLK, a Bandung food and lifestyle platform with
-                                1M+ Instagram followers. I own a feature like this from location research to the final
-                                captions.</p>
+                            <p class="lb-desc">A venue feature for a Bandung food and lifestyle platform with 1M+
+                                Instagram followers. I handled it end to end, from location research and pitching to
+                                filming, editing, voice-over, and captions.</p>
                             <ul class="chips">
+                                <li>Concept</li>
                                 <li>Videography</li>
                                 <li>Editing</li>
-                                <li>Voice-over</li>
+                                <li>Color Grading</li>
+                                <li>Transitions &amp; Effects</li>
+                                <li>Sound Design</li>
                                 <li>Captions</li>
                             </ul>
                             <dl class="lb-meta">
@@ -2200,7 +2253,7 @@
                                 </div>
                                 <div>
                                     <dt>My role</dt>
-                                    <dd>Videographer &amp; video editor</dd>
+                                    <dd>Videographer &amp; Video Editor</dd>
                                 </div>
                                 <div>
                                     <dt>Platform</dt>
@@ -2219,24 +2272,30 @@
                     </div>
                 </article>
 
+                <!-- ---------- CASE 2: Get Ready With Me ---------- -->
                 <article class="case flip">
                     <div class="reel-col">
                         <div class="reel">
-                            <video src="videos/BADLAB_PRODUCT.mp4#t=0.1" aria-label="BAD LAB product video 1" muted loop
-                                playsinline preload="metadata"></video>
+                            <video src="videos/BADLAB_PRODUCT.mp4#t=0.1"
+                                aria-label="Get Ready With Me, BAD LAB product video" muted loop playsinline
+                                preload="metadata"></video>
                         </div>
-                        <p class="reel-note">Product video 1 · Instagram &amp; TikTok, 2026</p>
+                        <p class="reel-note">Get Ready With Me · Instagram &amp; TikTok, 2026</p>
                     </div>
                     <div class="case-body">
-                        <p class="cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product content</p>
-                        <h3>Product video 1</h3>
-                        <p class="desc">A product video for BAD LAB, a men's grooming and personal care brand.
-                            Hook-first structure, with motion graphics, text animation, voice-over, and subtitles.</p>
+                        <p class="cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product Video</p>
+                        <h3>Get Ready With Me</h3>
+                        <p class="desc">A short-form product video for a men’s grooming brand. I wrote the hook and
+                            edited it with motion graphics and text animation.</p>
                         <ul class="chips">
-                            <li>Hooks</li>
-                            <li>Motion graphics</li>
-                            <li>Text animation</li>
-                            <li>Subtitles</li>
+                            <li>Concept</li>
+                            <li>Editing</li>
+                            <li>Motion Graphics</li>
+                            <li>Color Grading</li>
+                            <li>Transitions &amp; Effects</li>
+                            <li>Sound Design</li>
+                            <li>Copywriting</li>
+                            <li>Captions</li>
                         </ul>
                         <button class="btn lb-trigger" type="button" data-href="videos/BADLAB_PRODUCT.mp4">View
                             project<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
@@ -2244,16 +2303,19 @@
                                 <path d="M7 17 17 7M8 7h9v9" />
                             </svg></button>
                         <div class="fw-info" hidden>
-                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product content</p>
-                            <h3>Product video 1</h3>
-                            <p class="lb-desc">A product video for BAD LAB, a men's grooming and personal care brand.
-                                Hook-first structure, with motion graphics, text animation, voice-over, and subtitles.
-                            </p>
+                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product Video</p>
+                            <h3>Get Ready With Me</h3>
+                            <p class="lb-desc">A short-form product video for a men’s grooming brand. I wrote the hook
+                                and edited it with motion graphics and text animation.</p>
                             <ul class="chips">
-                                <li>Hooks</li>
-                                <li>Motion graphics</li>
-                                <li>Text animation</li>
-                                <li>Subtitles</li>
+                                <li>Concept</li>
+                                <li>Editing</li>
+                                <li>Motion Graphics</li>
+                                <li>Color Grading</li>
+                                <li>Transitions &amp; Effects</li>
+                                <li>Sound Design</li>
+                                <li>Copywriting</li>
+                                <li>Captions</li>
                             </ul>
                             <dl class="lb-meta">
                                 <div>
@@ -2262,11 +2324,11 @@
                                 </div>
                                 <div>
                                     <dt>My role</dt>
-                                    <dd>Video editor &amp; content producer</dd>
+                                    <dd>Video Editor &amp; Content Producer</dd>
                                 </div>
                                 <div>
                                     <dt>Platform</dt>
-                                    <dd>Instagram &amp; TikTok</dd>
+                                    <dd>Instagram, TikTok</dd>
                                 </div>
                                 <div>
                                     <dt>Date</dt>
@@ -2287,41 +2349,40 @@
             <div class="wrap fw">
                 <div class="head">
                     <h2 class="h2">More from the reel</h2>
-                    <p class="lede">Product, barber, brand, and a podcast edit made for practice.</p>
+                    <p class="lede">Product videos, a KKV collaboration, barber content, and a podcast edit.</p>
                 </div>
                 <ul class="fw-grid" data-stagger>
+
+                    <!-- featured-1: Podcast Apple Music -->
                     <li>
-                        <a class="fw-item" href="videos/featured-1.mp4" aria-label="Play video: Podcast edit">
+                        <a class="fw-item" href="videos/featured-1.mp4" aria-label="Play video: Podcast Apple Music">
                             <img src="assets/featured/thumb-1.jpg" alt="" width="360" height="640" loading="lazy"
                                 decoding="async">
                             <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg></span>
-                            <span class="fw-cap"><small>Personal practice</small>Podcast edit</span></a>
+                            <span class="fw-cap"><small>Personal Account</small>Podcast Apple Music</span></a>
                         <div class="fw-info" hidden>
-                            <p class="lb-cat"><b>Personal practice</b> &nbsp;/&nbsp; Podcast clip</p>
-                            <h3>Podcast edit</h3>
-                            <p class="lb-desc">A podcast clip I edited on my own to practice reaching a wider audience
-                                with
-                                short-form. It was not made for a client. The footage comes from a Billie Eilish podcast
-                                episode by
-                                Apple Music and belongs to its owners.</p>
+                            <p class="lb-cat"><b>Personal Account</b> &nbsp;/&nbsp; Social Media Edit</p>
+                            <h3>Podcast Apple Music</h3>
+                            <p class="lb-desc">A short-form podcast edit made for my personal editing account, cut from
+                                a Billie Eilish podcast episode by Apple Music. Edit only. Footage belongs to its
+                                original owners.</p>
                             <ul class="chips">
                                 <li>Editing</li>
+                                <li>Motion Graphics</li>
+                                <li>Color Grading</li>
+                                <li>Transitions &amp; Effects</li>
                                 <li>Captions</li>
                             </ul>
                             <dl class="lb-meta">
                                 <div>
-                                    <dt>Type</dt>
-                                    <dd>Practice edit, no client</dd>
+                                    <dt>Client</dt>
+                                    <dd>Personal account (self-initiated)</dd>
                                 </div>
                                 <div>
                                     <dt>My role</dt>
-                                    <dd>Edit only</dd>
-                                </div>
-                                <div>
-                                    <dt>Format</dt>
-                                    <dd>Vertical short-form</dd>
+                                    <dd>Video Editor</dd>
                                 </div>
                                 <div>
                                     <dt>Source</dt>
@@ -2331,21 +2392,29 @@
                             </dl>
                         </div>
                     </li>
+
+                    <!-- featured-2: A Day as a Barista -->
                     <li>
-                        <a class="fw-item" href="videos/featured-2.mp4" aria-label="Play video: Product video 2">
+                        <a class="fw-item" href="videos/featured-2.mp4" aria-label="Play video: A Day as a Barista">
                             <img src="assets/featured/thumb-2.jpg" alt="" width="360" height="640" loading="lazy"
                                 decoding="async">
                             <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg></span>
-                            <span class="fw-cap"><small>BAD LAB</small>Product video 2</span></a>
+                            <span class="fw-cap"><small>BAD LAB</small>A Day as a Barista</span></a>
                         <div class="fw-info" hidden>
-                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product content</p>
-                            <h3>Product video 2</h3>
-                            <p class="lb-desc">Another product video from the 30-a-month product series for BAD LAB.</p>
+                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Product Video</p>
+                            <h3>A Day as a Barista</h3>
+                            <p class="lb-desc">A short-form product video for a men’s grooming brand. I developed the
+                                concept and hook, wrote the captions, and edited the video.</p>
                             <ul class="chips">
+                                <li>Concept</li>
                                 <li>Editing</li>
-                                <li>Text animation</li>
+                                <li>Color Grading</li>
+                                <li>Transitions &amp; Effects</li>
+                                <li>Sound Design</li>
+                                <li>Copywriting</li>
+                                <li>Captions</li>
                             </ul>
                             <dl class="lb-meta">
                                 <div>
@@ -2354,11 +2423,11 @@
                                 </div>
                                 <div>
                                     <dt>My role</dt>
-                                    <dd>Video editor &amp; content producer</dd>
+                                    <dd>Video Editor &amp; Content Producer</dd>
                                 </div>
                                 <div>
                                     <dt>Platform</dt>
-                                    <dd>Instagram &amp; TikTok</dd>
+                                    <dd>Instagram, TikTok</dd>
                                 </div>
                                 <div>
                                     <dt>Date</dt>
@@ -2367,21 +2436,31 @@
                             </dl>
                         </div>
                     </li>
+
+                    <!-- featured-3: KKV x BAD LAB -->
                     <li>
-                        <a class="fw-item" href="videos/featured-3.mp4" aria-label="Play video: KKV">
+                        <a class="fw-item" href="videos/featured-3.mp4" aria-label="Play video: KKV × BAD LAB">
                             <img src="assets/featured/thumb-3.jpg" alt="" width="360" height="640" loading="lazy"
                                 decoding="async">
                             <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg></span>
-                            <span class="fw-cap"><small>BAD LAB</small>KKV</span></a>
+                            <span class="fw-cap"><small>BAD LAB × KKV</small>KKV × BAD LAB</span></a>
                         <div class="fw-info" hidden>
-                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Brand content</p>
-                            <h3>KKV</h3>
-                            <p class="lb-desc">A short-form brand video made for BAD LAB.</p>
+                            <p class="lb-cat"><b>BAD LAB × KKV</b> &nbsp;/&nbsp; Product Video</p>
+                            <h3>KKV × BAD LAB</h3>
+                            <p class="lb-desc">A short-form video for BAD LAB products sold at KKV, part of a
+                                collaboration series of 6 videos a month. I developed the concept, filmed it, and
+                                edited it with motion graphics and text animation.</p>
                             <ul class="chips">
+                                <li>Concept</li>
                                 <li>Editing</li>
-                                <li>Motion graphics</li>
+                                <li>Motion Graphics</li>
+                                <li>Color Grading</li>
+                                <li>Transitions &amp; Effects</li>
+                                <li>Sound Design</li>
+                                <li>Copywriting</li>
+                                <li>Captions</li>
                             </ul>
                             <dl class="lb-meta">
                                 <div>
@@ -2390,11 +2469,11 @@
                                 </div>
                                 <div>
                                     <dt>My role</dt>
-                                    <dd>Video editor &amp; content producer</dd>
+                                    <dd>Videographer &amp; Video Editor</dd>
                                 </div>
                                 <div>
                                     <dt>Platform</dt>
-                                    <dd>Instagram &amp; TikTok</dd>
+                                    <dd>Instagram, TikTok</dd>
                                 </div>
                                 <div>
                                     <dt>Date</dt>
@@ -2403,21 +2482,27 @@
                             </dl>
                         </div>
                     </li>
+
+                    <!-- featured-4: Warrior Haircut -->
                     <li>
-                        <a class="fw-item" href="videos/featured-4.mp4" aria-label="Play video: Barber 1">
+                        <a class="fw-item" href="videos/featured-4.mp4" aria-label="Play video: Warrior Haircut">
                             <img src="assets/featured/thumb-4.jpg" alt="" width="360" height="640" loading="lazy"
                                 decoding="async">
                             <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg></span>
-                            <span class="fw-cap"><small>BAD LAB</small>Barber 1</span></a>
+                            <span class="fw-cap"><small>BAD LAB</small>Warrior Haircut</span></a>
                         <div class="fw-info" hidden>
-                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Barber &amp; haircut</p>
-                            <h3>Barber 1</h3>
-                            <p class="lb-desc">Barber and haircut content for BAD LAB's second brand account.</p>
+                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Barber Content</p>
+                            <h3>Warrior Haircut</h3>
+                            <p class="lb-desc">A short-form haircut video for BAD LAB’s barber account. Edited with
+                                zoom in and out, transitions, effects, color grading, music, and sound effects.</p>
                             <ul class="chips">
+                                <li>Concept</li>
+                                <li>Videography</li>
                                 <li>Editing</li>
-                                <li>Captions</li>
+                                <li>Color Grading</li>
+                                <li>Transitions &amp; Effects</li>
                             </ul>
                             <dl class="lb-meta">
                                 <div>
@@ -2426,11 +2511,11 @@
                                 </div>
                                 <div>
                                     <dt>My role</dt>
-                                    <dd>Video editor &amp; content producer</dd>
+                                    <dd>Video Editor &amp; Content Producer</dd>
                                 </div>
                                 <div>
                                     <dt>Platform</dt>
-                                    <dd>Instagram &amp; TikTok</dd>
+                                    <dd>Instagram, TikTok</dd>
                                 </div>
                                 <div>
                                     <dt>Date</dt>
@@ -2439,21 +2524,27 @@
                             </dl>
                         </div>
                     </li>
+
+                    <!-- featured-5: Comma Haircut -->
                     <li>
-                        <a class="fw-item" href="videos/featured-5.mp4" aria-label="Play video: Barber 2">
+                        <a class="fw-item" href="videos/featured-5.mp4" aria-label="Play video: Comma Haircut">
                             <img src="assets/featured/thumb-5.jpg" alt="" width="360" height="640" loading="lazy"
                                 decoding="async">
                             <span class="fw-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg></span>
-                            <span class="fw-cap"><small>BAD LAB</small>Barber 2</span></a>
+                            <span class="fw-cap"><small>BAD LAB</small>Comma Haircut</span></a>
                         <div class="fw-info" hidden>
-                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Barber &amp; haircut</p>
-                            <h3>Barber 2</h3>
-                            <p class="lb-desc">Another cut from the barber and haircut series, 30 videos a month.</p>
+                            <p class="lb-cat"><b>BAD LAB</b> &nbsp;/&nbsp; Barber Content</p>
+                            <h3>Comma Haircut</h3>
+                            <p class="lb-desc">A short-form haircut video for BAD LAB’s barber account. Built on zoom
+                                in and out, transitions, and effects, with color grading, music, and sound effects.</p>
                             <ul class="chips">
+                                <li>Concept</li>
+                                <li>Videography</li>
                                 <li>Editing</li>
-                                <li>Captions</li>
+                                <li>Color Grading</li>
+                                <li>Transitions &amp; Effects</li>
                             </ul>
                             <dl class="lb-meta">
                                 <div>
@@ -2462,11 +2553,11 @@
                                 </div>
                                 <div>
                                     <dt>My role</dt>
-                                    <dd>Video editor &amp; content producer</dd>
+                                    <dd>Video Editor &amp; Content Producer</dd>
                                 </div>
                                 <div>
                                     <dt>Platform</dt>
-                                    <dd>Instagram &amp; TikTok</dd>
+                                    <dd>Instagram, TikTok</dd>
                                 </div>
                                 <div>
                                     <dt>Date</dt>
@@ -2487,24 +2578,21 @@
                 </div>
                 <div class="stats" data-stagger>
                     <div class="stat">
-                        <div class="n" data-to="101" data-suf="K">101K</div>
-                        <p class="l">Views on the Mi Madre Reel</p>
+                        <div class="n"><span data-to="3" data-suf="+">3+</span> <span class="u">Years</span></div>
+                        <p class="l">Experience in Video Editing &amp; Content Production</p>
                     </div>
                     <div class="stat">
-                        <div class="n" data-to="1" data-suf="M+">1M+</div>
-                        <p class="l">Instagram followers on BDGFOLK</p>
+                        <div class="n"><span data-to="100" data-suf="K+">100K+</span> <span class="u">Views</span></div>
+                        <p class="l">On Featured Instagram Reels for BDGFOLK</p>
                     </div>
                     <div class="stat">
-                        <div class="n" data-to="60" data-suf="">60</div>
-                        <p class="l">Short-form videos a month for BAD LAB</p>
+                        <div class="n"><span data-to="60" data-suf="+">60+</span> <span class="u">Videos / Month</span>
+                        </div>
+                        <p class="l">60 videos for BAD LAB and 1–2 videos for BDGFOLK</p>
                     </div>
                     <div class="stat">
-                        <div class="n" data-to="3" data-suf="+">3+</div>
-                        <p class="l">Years of editing and filming</p>
-                    </div>
-                    <div class="stat">
-                        <div class="n" data-to="2" data-suf=" brands">2 brands</div>
-                        <p class="l">Produced at the same time, each with its own voice</p>
+                        <div class="n"><span data-to="2" data-suf="">2</span> <span class="u">Brands</span></div>
+                        <p class="l">Managed Concurrently, Alongside Occasional Freelance Projects</p>
                     </div>
                 </div>
             </div>
@@ -2526,47 +2614,63 @@
                     <h2 class="h2">Deandra Eurike</h2>
                 </div>
                 <div class="about-grid">
-                    <div class="about">
-                        <p class="big">Video editor and creative content producer with 3+ years in event and branded
-                            social media
-                            content.</p>
-                        <p>I handle the full cycle: concept, scripting, filming, and editing with motion graphics and
-                            text
-                            animation. I'm also a Computer Science student at BINUS University, which shapes how I
-                            organize a workflow
-                            and deliver on time.</p>
-                        <p>Right now I produce content for BDGFOLK and BAD LAB.</p>
-                        <dl class="kv">
-                            <div>
-                                <dt>Languages</dt>
-                                <dd>Indonesian (native), English (upper-intermediate), Japanese and Korean (basic)</dd>
-                            </div>
-                            <div>
-                                <dt>Education</dt>
-                                <dd>Bachelor of Computer Science, BINUS University (expected 2028)</dd>
-                            </div>
-                            <div>
-                                <dt>Availability</dt>
-                                <dd>Immediate. Full-time, freelance, and remote.</dd>
-                            </div>
-                        </dl>
-                    </div>
-                    <!-- Ganti dengan foto kamu (disarankan WebP, ±800x1000 px, < 150 KB) -->
+                    <!-- Foto di kiri, teks di kanan (teks tetap rata kiri). Disarankan WebP, ±800x1000 px, < 150 KB -->
                     <figure class="about-photo">
                         <img src="assets/dea.jpg" alt="Portrait of Deandra Eurike" width="800" height="1000"
                             loading="lazy" decoding="async">
                     </figure>
+                    <div class="about">
+                        <h3>Some moments pass without being captured. I know what it feels like to wish they
+                            had been.</h3>
+
+                        <p style="font-size: 17px;">I started filming and editing to give moments a way to live beyond
+                            the present. Over time, I
+                            learned to see stories in the details, shape them through editing, and turn simple ideas
+                            into something worth watching. From concept to final cut, I bring together visual
+                            storytelling, pacing, sound, and a clear creative direction.</p>
+                        <h3>Every frame is a choice about what deserves to be remembered.</h3>
+                        <p style="font-size: 17px;">I believe good videos do more than show what happened. They capture
+                            a feeling, hold
+                            attention, and give people a reason to stay.</p>
+                        <h3>The smallest details make the difference.</h3>
+                        <p style="font-size: 17px;">Every cut, transition, and sound should serve the story. If it
+                            doesn't add meaning, it
+                            doesn't belong.
+                            </h2>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- ================= SERVICES ================= -->
+        <!-- Kiri: judul + logo tools. Kanan: daftar layanan short-form video. -->
         <section class="sec" id="services">
             <div class="wrap svc-grid">
                 <div>
                     <h2 class="h2">Services that shape your story.</h2>
                     <p class="lede">One person, the whole short-form cycle.</p>
+
+                    <!-- Nama file logo diambil apa adanya dari folder assets/ -->
+                    <div class="logos svc-tools">
+                        <div class="logo" title="Premiere Pro"><i><img src="assets/Adobe_Premiere_Pro_CC_icon.svg.webp"
+                                    alt="Premiere Pro" width="64" height="64"></i>Premiere Pro</div>
+                        <div class="logo" title="After Effects"><i><img
+                                    src="assets/Adobe_After_Effects_CC_icon.svg.webp" alt="After Effects" width="64"
+                                    height="64"></i>After Effects</div>
+                        <div class="logo" title="CapCut"><i><img src="assets/Capcut-logo.png" alt="CapCut" width="64"
+                                    height="64"></i>CapCut</div>
+                        <div class="logo" title="Logic Pro"><i><img src="assets/setup_logic - Diedit.jpg"
+                                    alt="Logic Pro" width="64" height="64"></i>Logic Pro</div>
+                        <div class="logo" title="Notion"><i><img src="assets/notion-logo.webp" alt="Notion" width="64"
+                                    height="64"></i>Notion</div>
+                        <div class="logo" title="Canva"><i><img src="assets/canva-icon-logo.png" alt="Canva" width="64"
+                                    height="64"></i>Canva</div>
+                        <div class="logo" title="Lightroom"><i><img
+                                    src="assets/Adobe_Photoshop_Lightroom_CC_logo.svg.webp" alt="Lightroom" width="64"
+                                    height="64"></i>Lightroom</div>
+                    </div>
                 </div>
+
                 <ul class="svc-list">
                     <li><b>Short-form video editing</b><span>Instagram Reels and TikTok</span></li>
                     <li><b>Motion graphics &amp; text animation</b><span>After Effects, Premiere Pro, CapCut</span></li>
@@ -2575,64 +2679,6 @@
                     <li><b>Videography &amp; photography</b><span>On-location filming, events</span></li>
                     <li><b>Color grading &amp; sound design</b><span>Finishing and audio polish</span></li>
                 </ul>
-            </div>
-        </section>
-
-        <!-- ================= TOOLS ================= -->
-        <section class="sec" id="tools">
-            <div class="wrap two">
-                <div>
-                    <h2>Tools</h2>
-                    <dl class="kv">
-                        <div>
-                            <dt>Video</dt>
-                            <dd>Adobe Premiere Pro, CapCut</dd>
-                        </div>
-                        <div>
-                            <dt>Motion</dt>
-                            <dd>Adobe After Effects</dd>
-                        </div>
-                        <div>
-                            <dt>Audio</dt>
-                            <dd>Logic Pro</dd>
-                        </div>
-                        <div>
-                            <dt>Photo</dt>
-                            <dd>Lightroom</dd>
-                        </div>
-                        <div>
-                            <dt>Workflow</dt>
-                            <dd>Notion</dd>
-                        </div>
-                        <div>
-                            <dt>Design</dt>
-                            <dd>Canva</dd>
-                        </div>
-                    </dl>
-                </div>
-                <div>
-                    <h2>My creative toolbox</h2>
-                    <!-- Logo tool memakai file yang ada di folder assets/. Lightroom memakai badge teks (belum ada file logonya). -->
-                    <div class="logos" data-stagger>
-                        <div class="logo"><i><img src="assets/Adobe_Premiere_Pro_CC_icon.svg.webp" alt="" width="64"
-                                    height="64"></i>Premiere Pro</div>
-                        <div class="logo"><i><img src="assets/Adobe_After_Effects_CC_icon.svg.webp" alt="" width="64"
-                                    height="64"></i>After Effects</div>
-                        <div class="logo"><i><img src="assets/Capcut-logo.png" alt="" width="64" height="64"></i>CapCut
-                        </div>
-                        <div class="logo"><i><img src="assets/setup_logic - Diedit.jpg" alt="" width="64"
-                                    height="64"></i>Logic Pro
-                        </div>
-                        <div class="logo"><i><img src="assets/notion-logo.webp" alt="" width="64" height="64"></i>Notion
-                        </div>
-                        <div class="logo"><i><img src="assets/canva-icon-logo.png" alt="" width="64"
-                                    height="64"></i>Canva
-                        </div>
-                        <div class="logo"><i><img src="assets/Adobe_Photoshop_Lightroom_CC_logo.svg.webp" alt=""
-                                    width="64" height="64"></i>Lightroom
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -2649,32 +2695,40 @@
                     <div class="step"><i>1</i>
                         <div>
                             <h3>Research &amp; concept</h3>
-                            <p>Venue research, content ideas, and a pitch to the team lead before anything is filmed.
+                            <p>I start with your brief and research the location or subject. Then I develop content
+                                ideas and pitch the concept for approval before anything is filmed.
                             </p>
                         </div>
                     </div>
                     <div class="step"><i>2</i>
                         <div>
                             <h3>Hook &amp; script</h3>
-                            <p>A hook for the first seconds, plus the voice-over script and copy.</p>
+                            <p>I write the hook for the opening seconds, then the voice-over script and on-screen copy.
+                            </p>
                         </div>
                     </div>
                     <div class="step"><i>3</i>
                         <div>
                             <h3>Film</h3>
-                            <p>On-location videography and photography.</p>
+                            <p>I film on location, with photography when the project calls for it. If you only need
+                                editing, you can send your own footage.
+                            </p>
                         </div>
                     </div>
                     <div class="step"><i>4</i>
                         <div>
                             <h3>Edit</h3>
-                            <p>Short-form edit with motion graphics, text animation, color, and sound design.</p>
+                            <p>I cut for short-form: pacing, zooms, transitions, and effects, with motion graphics and
+                                text animation where they fit. Then I finish with color grading, music, and sound
+                                design.
+                            </p>
                         </div>
                     </div>
                     <div class="step"><i>5</i>
                         <div>
                             <h3>Captions &amp; delivery</h3>
-                            <p>Subtitles and captions, then delivery ready for Instagram and TikTok.</p>
+                            <p>I add subtitles and captions, then export for Instagram and TikTok. Final videos usually
+                                run from 30 seconds to 5 minutes.</p>
                         </div>
                     </div>
                 </div>
@@ -2692,55 +2746,57 @@
                     <div class="faq-list">
                         <details open>
                             <summary>What kind of projects do you take on?<i></i></summary>
-                            <p>Short-form video for brands and events: product videos, venue and food features, barber
-                                and grooming
-                                content, and event coverage. I edit mainly in Premiere Pro, After Effects, and CapCut.
+                            <p>I take on a wide mix of projects: events, brand content, collaborations, and more, shaped
+                                around what each client needs. My focus is short-form content, with final videos usually
+                                running from 30 seconds to 5 minutes.
+
                             </p>
                         </details>
                         <details>
                             <summary>How involved are you in the process?<i></i></summary>
-                            <p>Fully hands-on. I handle concept, scripting, filming, and the edit with motion graphics
-                                and text
-                                animation, plus voice-over and captions. At BDGFOLK I deliver venue features end to end,
-                                and at BAD LAB
-                                I own the workflow from ideas and hooks to the final edit.</p>
+                            <p>Fully hands-on, from the first concept and script, through filming, to the final edit,
+                                color grading, and sound design. I can also take on just the part you need, whether
+                                that’s editing only, videography only, or something else.
+                            </p>
                         </details>
                         <details>
                             <summary>Do you take small projects, or only big ones?<i></i></summary>
-                            <p>Both. I've done 3–5 freelance projects a month since 2023, like birthday videos and Sweet
-                                Seventeen
-                                events, and I currently produce 60 short-form videos a month for BAD LAB's two accounts.
+                            <p>I’m open to projects of every size, as long as they align with my creative vision and the
+                                idea resonates with me. Whether it’s a single short-form edit or a full production, I’m
+                                happy to talk.
                             </p>
                         </details>
                         <details>
                             <summary>How long does a project take?<i></i></summary>
-                            <p>It depends on the number of videos and how much filming is involved. Tell me your
-                                deadline and I'll
-                                say honestly what's realistic.</p>
+                            <p>Simple short-form edits can take as little as one day, with a capacity of 3–5 videos per
+                                day depending on the footage and editing requirements. More complex edits take longer,
+                                and full-production projects typically take 3–7 days. Timelines are tailored to each
+                                project’s scope and creative needs.
+                            </p>
                         </details>
                         <details>
                             <summary>Do you work alone or with a team?<i></i></summary>
-                            <p>I work independently from idea to final file, and I'm comfortable pitching to and working
-                                with a team
-                                lead or creative lead.</p>
+                            <p>I handle every project myself, from concept to final edit. For larger projects, I’m used
+                                to collaborating with a few trusted people, so the final result and the creative vision
+                                get the attention they need.
+                            </p>
                         </details>
                         <details>
                             <summary>Can you match my brand's style?<i></i></summary>
-                            <p>Yes. I produce for two very different brands at once: a men's grooming brand and a food
-                                and lifestyle
-                                media platform, each with its own voice.</p>
+                            <p>Yes. I adapt to what the project needs, whether that means matching your existing visual
+                                style or building a new creative direction with you.</p>
                         </details>
                         <details>
                             <summary>Are you available for remote or full-time work?<i></i></summary>
-                            <p>Yes. I'm available immediately for full-time, freelance, and remote work. I'm based in
-                                Jakarta,
-                                Indonesia.</p>
+                            <p>Yes. I’m available for project-based, full-time, freelance, and remote work. I’m based
+                                in Jakarta, Indonesia.
+                            </p>
                         </details>
                         <details>
                             <summary>How does pricing work?<i></i></summary>
-                            <p>Pricing is project-based and depends on the number of videos, filming needs, and scope.
-                                Send me a
-                                brief by WhatsApp or email and I'll reply with a quote.</p>
+                            <p>Pricing is project-based and depends on the number of videos, their complexity, and their
+                                final duration. Contact me directly with your project details and I’ll send you a clear
+                                quote.</p>
                         </details>
                     </div>
                 </div>
@@ -2938,243 +2994,242 @@
             });
         })();
     </script>
-</body>
 
-<script>
-    (function () {
-        var d = document, de = d.documentElement;
-        var bar = d.querySelector(".progress"), nav = d.querySelector(".nav");
+    <script>
+        (function () {
+            var d = document, de = d.documentElement;
+            var bar = d.querySelector(".progress"), nav = d.querySelector(".nav");
 
-        /* Progress bar + bayangan nav saat scroll */
-        function onScroll() {
-            var m = de.scrollHeight - de.clientHeight;
-            bar.style.transform = "scaleX(" + (m > 0 ? de.scrollTop / m : 0) + ")";
-            nav.classList.toggle("sc", de.scrollTop > 8);
-        }
-        addEventListener("scroll", onScroll, { passive: true }); onScroll();
+            /* Progress bar + bayangan nav saat scroll */
+            function onScroll() {
+                var m = de.scrollHeight - de.clientHeight;
+                bar.style.transform = "scaleX(" + (m > 0 ? de.scrollTop / m : 0) + ")";
+                nav.classList.toggle("sc", de.scrollTop > 8);
+            }
+            addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
-        /* Salin email */
-        var mb = d.getElementById("copyMail"), lbl = mb.querySelector("span"), orig = lbl.textContent;
-        mb.addEventListener("click", function () {
-            function ok() { lbl.textContent = "Copied!"; setTimeout(function () { lbl.textContent = orig; }, 1600); }
-            function fallback() { location.href = "mailto:" + orig; }
-            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(orig).then(ok, fallback);
-            else fallback();
-        });
+            /* Salin email */
+            var mb = d.getElementById("copyMail"), lbl = mb.querySelector("span"), orig = lbl.textContent;
+            mb.addEventListener("click", function () {
+                function ok() { lbl.textContent = "Copied!"; setTimeout(function () { lbl.textContent = orig; }, 1600); }
+                function fallback() { location.href = "mailto:" + orig; }
+                if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(orig).then(ok, fallback);
+                else fallback();
+            });
 
-        /* Video reel: autoplay saat terlihat + kontrol seek/waktu/play/suara */
-        var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var vids = d.querySelectorAll(".reel video");
-        var IC = {
-            play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
-            pause: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>',
-            vol: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>',
-            mute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z" fill="currentColor"/><path d="M22 9l-6 6M16 9l6 6"/></svg>'
-        };
-        function fmt(s) {
-            if (!isFinite(s)) return "0:00";
-            var m = Math.floor(s / 60), x = Math.floor(s % 60);
-            return m + ":" + (x < 10 ? "0" : "") + x;
-        }
-        vids.forEach(function (v) {
-            var bar = d.createElement("div");
-            bar.className = "rc";
-            bar.innerHTML =
-                '<button type="button" class="rc-play"></button>' +
-                '<input class="rc-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video">' +
-                '<span class="rc-time">0:00 / 0:00</span>' +
-                '<button type="button" class="rc-mute"></button>';
-            v.parentNode.appendChild(bar);
+            /* Video reel: autoplay saat terlihat + kontrol seek/waktu/play/suara */
+            var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+            var vids = d.querySelectorAll(".reel video");
+            var IC = {
+                play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+                pause: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>',
+                vol: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>',
+                mute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z" fill="currentColor"/><path d="M22 9l-6 6M16 9l6 6"/></svg>'
+            };
+            function fmt(s) {
+                if (!isFinite(s)) return "0:00";
+                var m = Math.floor(s / 60), x = Math.floor(s % 60);
+                return m + ":" + (x < 10 ? "0" : "") + x;
+            }
+            vids.forEach(function (v) {
+                var bar = d.createElement("div");
+                bar.className = "rc";
+                bar.innerHTML =
+                    '<button type="button" class="rc-play"></button>' +
+                    '<input class="rc-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video">' +
+                    '<span class="rc-time">0:00 / 0:00</span>' +
+                    '<button type="button" class="rc-mute"></button>';
+                v.parentNode.appendChild(bar);
 
-            var pb = bar.querySelector(".rc-play"), sk = bar.querySelector(".rc-seek"),
-                tm = bar.querySelector(".rc-time"), mb = bar.querySelector(".rc-mute"),
-                reel = v.parentNode, scrub = false, hideT;
+                var pb = bar.querySelector(".rc-play"), sk = bar.querySelector(".rc-seek"),
+                    tm = bar.querySelector(".rc-time"), mb = bar.querySelector(".rc-mute"),
+                    reel = v.parentNode, scrub = false, hideT;
 
-            /* Tampilkan bar; kalau video sedang main, sembunyikan lagi setelah beberapa detik */
-            function show(keep) {
-                bar.classList.add("show");
-                clearTimeout(hideT);
-                if (!keep && !v.paused && !scrub) {
-                    hideT = setTimeout(function () { bar.classList.remove("show"); }, 1500);
+                /* Tampilkan bar; kalau video sedang main, sembunyikan lagi setelah beberapa detik */
+                function show(keep) {
+                    bar.classList.add("show");
+                    clearTimeout(hideT);
+                    if (!keep && !v.paused && !scrub) {
+                        hideT = setTimeout(function () { bar.classList.remove("show"); }, 1500);
+                    }
                 }
-            }
 
-            function icons() {
-                pb.innerHTML = v.paused ? IC.play : IC.pause;
-                pb.setAttribute("aria-label", v.paused ? "Play" : "Pause");
-                mb.innerHTML = v.muted ? IC.mute : IC.vol;
-                mb.setAttribute("aria-label", v.muted ? "Unmute" : "Mute");
-            }
-            function upd() {
-                if (!scrub && v.duration) sk.value = (v.currentTime / v.duration) * 1000;
-                tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration);
-            }
-            function toggle() {
-                if (v.paused) { v.dataset.manual = ""; v.play().catch(function () { }); }
-                else { v.dataset.manual = "1"; v.pause(); }
-            }
+                function icons() {
+                    pb.innerHTML = v.paused ? IC.play : IC.pause;
+                    pb.setAttribute("aria-label", v.paused ? "Play" : "Pause");
+                    mb.innerHTML = v.muted ? IC.mute : IC.vol;
+                    mb.setAttribute("aria-label", v.muted ? "Unmute" : "Mute");
+                }
+                function upd() {
+                    if (!scrub && v.duration) sk.value = (v.currentTime / v.duration) * 1000;
+                    tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration);
+                }
+                function toggle() {
+                    if (v.paused) { v.dataset.manual = ""; v.play().catch(function () { }); }
+                    else { v.dataset.manual = "1"; v.pause(); }
+                }
 
-            ["timeupdate", "loadedmetadata", "durationchange"].forEach(function (e) { v.addEventListener(e, upd); });
-            ["play", "pause", "volumechange"].forEach(function (e) { v.addEventListener(e, icons); });
-            v.addEventListener("play", function () { show(); });
-            v.addEventListener("pause", function () { show(true); });
+                ["timeupdate", "loadedmetadata", "durationchange"].forEach(function (e) { v.addEventListener(e, upd); });
+                ["play", "pause", "volumechange"].forEach(function (e) { v.addEventListener(e, icons); });
+                v.addEventListener("play", function () { show(); });
+                v.addEventListener("pause", function () { show(true); });
 
-            sk.addEventListener("input", function () {
-                scrub = true;
-                show(true);
-                if (v.duration) v.currentTime = (sk.value / 1000) * v.duration;
-                tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration);
+                sk.addEventListener("input", function () {
+                    scrub = true;
+                    show(true);
+                    if (v.duration) v.currentTime = (sk.value / 1000) * v.duration;
+                    tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration);
+                });
+                sk.addEventListener("change", function () { scrub = false; show(); });
+
+                pb.addEventListener("click", function () { toggle(); show(); });
+                mb.addEventListener("click", function () { v.muted = !v.muted; show(); });
+
+                /* Klik video: kalau bar tersembunyi, munculkan dulu. Kalau sudah tampil, play/pause. */
+                v.addEventListener("click", function () {
+                    if (!bar.classList.contains("show")) { show(); return; }
+                    toggle();
+                });
+
+                /* Mouse di atas video memunculkan bar (sentuhan tidak dihitung) */
+                reel.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") show(); });
+                reel.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") show(); });
+
+                /* Navigasi keyboard */
+                bar.addEventListener("focusin", function () { show(true); });
+                bar.addEventListener("focusout", function () { show(); });
+
+                icons(); upd(); show(true);
             });
-            sk.addEventListener("change", function () { scrub = false; show(); });
+            if (reduce || !("IntersectionObserver" in window)) return;
+            var vio = new IntersectionObserver(function (es) {
+                es.forEach(function (e) {
+                    var v = e.target;
+                    if (e.isIntersecting) {
+                        if (v.dataset.manual !== "1") { var p = v.play(); if (p && p.catch) p.catch(function () { }); }
+                    } else v.pause();
+                });
+            }, { threshold: 0.5 });
+            vids.forEach(function (v) { vio.observe(v); });
+            /* Judul hero: pecah per kata */
+            var hero = d.querySelector(".hero"), h1 = hero.querySelector("h1"), txt = h1.textContent.trim();
+            h1.setAttribute("aria-label", txt);
+            h1.innerHTML = txt.split(/\s+/).map(function (w, i) {
+                return '<span class="w" aria-hidden="true"><span class="wi" style="--i:' + i + '">' + w + "</span></span>";
+            }).join(" ");
+            requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add("go"); }); });
 
-            pb.addEventListener("click", function () { toggle(); show(); });
-            mb.addEventListener("click", function () { v.muted = !v.muted; show(); });
-
-            /* Klik video: kalau bar tersembunyi, munculkan dulu. Kalau sudah tampil, play/pause. */
-            v.addEventListener("click", function () {
-                if (!bar.classList.contains("show")) { show(); return; }
-                toggle();
+            /* Scroll reveal dengan jeda bertahap */
+            d.querySelectorAll("[data-stagger]").forEach(function (p) {
+                [].forEach.call(p.children, function (c, i) { c.classList.add("rv"); c.style.setProperty("--d", i * 90 + "ms"); });
             });
+            d.querySelectorAll(".head,.case,.about,.about-photo,.exp,.svc-grid>div,.svc-list,.faq-grid>div,.ask,.hero .badge,.hero .sub,.hero .cta,.hero .chat,.hero .proof").forEach(function (e) { e.classList.add("rv"); });
 
-            /* Mouse di atas video memunculkan bar (sentuhan tidak dihitung) */
-            reel.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") show(); });
-            reel.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") show(); });
-
-            /* Navigasi keyboard */
-            bar.addEventListener("focusin", function () { show(true); });
-            bar.addEventListener("focusout", function () { show(); });
-
-            icons(); upd(); show(true);
-        });
-        if (reduce || !("IntersectionObserver" in window)) return;
-        var vio = new IntersectionObserver(function (es) {
-            es.forEach(function (e) {
-                var v = e.target;
-                if (e.isIntersecting) {
-                    if (v.dataset.manual !== "1") { var p = v.play(); if (p && p.catch) p.catch(function () { }); }
-                } else v.pause();
-            });
-        }, { threshold: 0.5 });
-        vids.forEach(function (v) { vio.observe(v); });
-        /* Judul hero: pecah per kata */
-        var hero = d.querySelector(".hero"), h1 = hero.querySelector("h1"), txt = h1.textContent.trim();
-        h1.setAttribute("aria-label", txt);
-        h1.innerHTML = txt.split(/\s+/).map(function (w, i) {
-            return '<span class="w" aria-hidden="true"><span class="wi" style="--i:' + i + '">' + w + "</span></span>";
-        }).join(" ");
-        requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add("go"); }); });
-
-        /* Scroll reveal dengan jeda bertahap */
-        d.querySelectorAll("[data-stagger]").forEach(function (p) {
-            [].forEach.call(p.children, function (c, i) { c.classList.add("rv"); c.style.setProperty("--d", i * 90 + "ms"); });
-        });
-        d.querySelectorAll(".head,.case,.about,.about-photo,.exp,.two>div,.svc-grid>div,.svc-list,.faq-grid>div,.ask,.hero .badge,.hero .sub,.hero .cta,.hero .chat,.hero .proof").forEach(function (e) { e.classList.add("rv"); });
-
-        function run(n) {
-            var to = +n.dataset.to, s = n.dataset.suf || "", t0 = null;
-            function f(t) {
-                if (!t0) t0 = t;
-                var p = Math.min((t - t0) / 1200, 1);
-                n.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + s;
-                if (p < 1) requestAnimationFrame(f);
+            function run(n) {
+                var to = +n.dataset.to, s = n.dataset.suf || "", t0 = null;
+                function f(t) {
+                    if (!t0) t0 = t;
+                    var p = Math.min((t - t0) / 1200, 1);
+                    n.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + s;
+                    if (p < 1) requestAnimationFrame(f);
+                }
+                requestAnimationFrame(f);
             }
-            requestAnimationFrame(f);
-        }
-        var io = new IntersectionObserver(function (es) {
-            es.forEach(function (e) {
-                if (!e.isIntersecting) return;
-                e.target.classList.add("in");
-                e.target.querySelectorAll("[data-to]").forEach(run);
-                io.unobserve(e.target);
+            var io = new IntersectionObserver(function (es) {
+                es.forEach(function (e) {
+                    if (!e.isIntersecting) return;
+                    e.target.classList.add("in");
+                    e.target.querySelectorAll("[data-to]").forEach(run);
+                    io.unobserve(e.target);
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
+            d.querySelectorAll(".rv").forEach(function (e) { io.observe(e); });
+
+            /* Menu aktif sesuai section */
+            var links = {};
+            d.querySelectorAll('.nav a[href^="#"]').forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+            var sio = new IntersectionObserver(function (es) {
+                es.forEach(function (e) {
+                    if (!e.isIntersecting) return;
+                    Object.keys(links).forEach(function (k) { links[k].classList.remove("on"); });
+                    var a = links[e.target.id]; if (a && !a.classList.contains("pill-sm")) a.classList.add("on");
+                });
+            }, { rootMargin: "-45% 0px -50% 0px" });
+            d.querySelectorAll("main section[id]").forEach(function (s) { sio.observe(s); });
+        })();
+    </script>
+
+    <script>
+        /* Pernyataan yang menyala kata per kata + garis workflow yang terisi saat di-scroll */
+        (function () {
+            var d = document, de = d.documentElement, sc = d.getElementById("scrub"), steps = d.getElementById("steps");
+            if (!sc || !steps) return;
+            sc.innerHTML = sc.textContent.trim().split(/\s+/).map(function (w) { return '<span class="sw">' + w + "</span>"; }).join(" ");
+            if (!de.classList.contains("js")) return; /* tanpa animasi: semua teks langsung tampil penuh */
+
+            var sws = [].slice.call(sc.querySelectorAll(".sw")), stepEls = [].slice.call(steps.querySelectorAll(".step")), tk = false;
+            function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+            function frame() {
+                tk = false;
+                var H = innerHeight;
+                var r = sc.getBoundingClientRect();
+                var sp = clamp((H * .82 - r.top) / (r.height + H * .35), 0, 1);
+                var lit = Math.round(sp * sws.length * 1.05);
+                sws.forEach(function (s, i) { s.classList.toggle("on", i < lit); });
+
+                var sr = steps.getBoundingClientRect();
+                var pp = clamp((H * .62 - sr.top) / sr.height, 0, 1);
+                steps.style.setProperty("--p", pp);
+                stepEls.forEach(function (s, i) { s.classList.toggle("on", pp >= i / (stepEls.length - 1) - .06); });
+            }
+            function req() { if (!tk) { tk = true; requestAnimationFrame(frame); } }
+            addEventListener("scroll", req, { passive: true });
+            addEventListener("resize", req);
+            frame();
+        })();
+    </script>
+
+    <script>
+        /* Kata di judul Contact berganti dengan animasi swipe ke atas: create -> visualize -> build */
+        (function () {
+            var rot = document.querySelector(".rot");
+            if (!rot || !document.documentElement.classList.contains("js")) return;
+            var words = [].slice.call(rot.children), n = words.length, i = 0, timer = null;
+            var track = document.createElement("span");
+            track.className = "rot-track";
+            words.forEach(function (w) { track.appendChild(w); });
+            var clone = words[0].cloneNode(true);       /* kata pertama diulang di akhir supaya putarannya mulus */
+            clone.setAttribute("aria-hidden", "true");
+            track.appendChild(clone);
+            rot.appendChild(track);
+
+            function fit() { rot.style.width = track.children[i].offsetWidth + "px"; }
+            function snap() {
+                track.style.transition = "none"; i = 0;
+                track.style.transform = "translateY(0)";
+                void track.offsetHeight;
+                track.style.transition = "";
+            }
+            function go() {
+                if (i >= n) snap();
+                i++;
+                track.style.transform = "translateY(-" + i + "em)";
+                fit();
+            }
+            track.addEventListener("transitionend", function (e) {
+                if (e.target === track && e.propertyName === "transform" && i >= n) snap();
             });
-        }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
-        d.querySelectorAll(".rv").forEach(function (e) { io.observe(e); });
+            function start() { if (!timer) timer = setInterval(go, 2200); }
+            function stop() { clearInterval(timer); timer = null; }
 
-        /* Menu aktif sesuai section */
-        var links = {};
-        d.querySelectorAll('.nav a[href^="#"]').forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
-        var sio = new IntersectionObserver(function (es) {
-            es.forEach(function (e) {
-                if (!e.isIntersecting) return;
-                Object.keys(links).forEach(function (k) { links[k].classList.remove("on"); });
-                var a = links[e.target.id]; if (a && !a.classList.contains("pill-sm")) a.classList.add("on");
-            });
-        }, { rootMargin: "-45% 0px -50% 0px" });
-        d.querySelectorAll("main section[id]").forEach(function (s) { sio.observe(s); });
-    })();
-</script>
-
-<script>
-    /* Pernyataan yang menyala kata per kata + garis workflow yang terisi saat di-scroll */
-    (function () {
-        var d = document, de = d.documentElement, sc = d.getElementById("scrub"), steps = d.getElementById("steps");
-        if (!sc || !steps) return;
-        sc.innerHTML = sc.textContent.trim().split(/\s+/).map(function (w) { return '<span class="sw">' + w + "</span>"; }).join(" ");
-        if (!de.classList.contains("js")) return; /* tanpa animasi: semua teks langsung tampil penuh */
-
-        var sws = [].slice.call(sc.querySelectorAll(".sw")), stepEls = [].slice.call(steps.querySelectorAll(".step")), tk = false;
-        function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
-        function frame() {
-            tk = false;
-            var H = innerHeight;
-            var r = sc.getBoundingClientRect();
-            var sp = clamp((H * .82 - r.top) / (r.height + H * .35), 0, 1);
-            var lit = Math.round(sp * sws.length * 1.05);
-            sws.forEach(function (s, i) { s.classList.toggle("on", i < lit); });
-
-            var sr = steps.getBoundingClientRect();
-            var pp = clamp((H * .62 - sr.top) / sr.height, 0, 1);
-            steps.style.setProperty("--p", pp);
-            stepEls.forEach(function (s, i) { s.classList.toggle("on", pp >= i / (stepEls.length - 1) - .06); });
-        }
-        function req() { if (!tk) { tk = true; requestAnimationFrame(frame); } }
-        addEventListener("scroll", req, { passive: true });
-        addEventListener("resize", req);
-        frame();
-    })();
-</script>
-
-<script>
-    /* Kata di judul Contact berganti dengan animasi swipe ke atas: create -> visualize -> build */
-    (function () {
-        var rot = document.querySelector(".rot");
-        if (!rot || !document.documentElement.classList.contains("js")) return;
-        var words = [].slice.call(rot.children), n = words.length, i = 0, timer = null;
-        var track = document.createElement("span");
-        track.className = "rot-track";
-        words.forEach(function (w) { track.appendChild(w); });
-        var clone = words[0].cloneNode(true);       /* kata pertama diulang di akhir supaya putarannya mulus */
-        clone.setAttribute("aria-hidden", "true");
-        track.appendChild(clone);
-        rot.appendChild(track);
-
-        function fit() { rot.style.width = track.children[i].offsetWidth + "px"; }
-        function snap() {
-            track.style.transition = "none"; i = 0;
-            track.style.transform = "translateY(0)";
-            void track.offsetHeight;
-            track.style.transition = "";
-        }
-        function go() {
-            if (i >= n) snap();
-            i++;
-            track.style.transform = "translateY(-" + i + "em)";
             fit();
-        }
-        track.addEventListener("transitionend", function (e) {
-            if (e.target === track && e.propertyName === "transform" && i >= n) snap();
-        });
-        function start() { if (!timer) timer = setInterval(go, 2200); }
-        function stop() { clearInterval(timer); timer = null; }
-
-        fit();
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
-        addEventListener("resize", fit);
-        if ("IntersectionObserver" in window) {
-            new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }).observe(rot);
-        } else start();
-    })();
-</script>
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+            addEventListener("resize", fit);
+            if ("IntersectionObserver" in window) {
+                new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }).observe(rot);
+            } else start();
+        })();
+    </script>
 </body>
 
 </html>
